@@ -50,10 +50,7 @@ class FooterComponent extends React.Component<RouterProps> {
                 <Link className="footer-lable" to="/fee">Asset Fee</Link>
               </p>
               <p>
-                <a href="#!" className="footer-lable">Cloud Exchange Program</a>
-              </p>
-              <p>
-                <a href="https://form.jotform.com/203166968415058" className="footer-lable" target="blank">Listing Token</a>
+                <a href="#" className="footer-lable" target="blank">Listing Token</a>
               </p>
               <p>
                 <a href="https://api.cx.finance" className="footer-lable" target="blank">API Documentation</a>
@@ -65,30 +62,18 @@ class FooterComponent extends React.Component<RouterProps> {
               <p className="footer-about">
                 <img src={email} alt="Email" />
                 listing@cx.finance</p>
-              <p className="footer-about">
-                <img src={phone} alt="Phone" />
-                + 60 787960192</p>
-              <p className="footer-about">
-                <div className="address">
-                  <p><img src={office} alt="address" /></p>
-                  <p>Warisan City View
-                  A13-14, 3/ 94A Batu 1 1/2 Jalan Cheras
-                  56100 Kuala Lumpur
-                  Malaysia</p>
-                </div>
-              </p>
             </div>
 
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto">
               <div>
                 <h5 className="text-uppercase font-weight-bold">Social</h5>
-                <a href="https://www.facebook.com/lukutex" className="gplus-ic" target="blank">
+                <a href="#" className="gplus-ic" target="blank">
                   <img src={FacebookIcon} alt="Facebook" />
                 </a>
-                <a href="https://twitter.com/CircleEx" className="gplus-ic" target="blank">
+                <a href="#" className="gplus-ic" target="blank">
                   <img src={TwitterIcon} alt="Twitter" />
                 </a>
-                <a href="https://t.me/lukutex_office" className="gplus-ic" target="blank">
+                <a href="#" className="gplus-ic" target="blank">
                   <img src={TelegramIcon} alt="Telegram" />
                 </a>
               </div>
