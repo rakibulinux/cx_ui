@@ -81,7 +81,7 @@ class FooterComponent extends React.Component<RouterProps> {
           </div>
         </div>
         <div className="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="https://cx.finance/"> CircleEx.com </a>
+        <a href="https://cx.finance/"> cx.finance </a>
         </div>
       </footer>
     );
