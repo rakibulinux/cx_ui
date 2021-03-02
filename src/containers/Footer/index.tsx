@@ -8,8 +8,8 @@ const TelegramIcon = require('../../assets/images/landing/social/Telegram.svg');
 const TwitterIcon = require('../../assets/images/landing/social/Twitter.svg');
 //const YouTubeIcon = require('../../assets/images/landing/social/YouTube.svg');
 //const RedditIcon = require('../../assets/images/landing/social/Reddit.svg');
-const FacebookIcon = require('../../assets/images/landing/social/Facebook.svg');
-//const MediumIcon = require('../../assets/images/landing/social/Medium.svg');
+/* const FacebookIcon = require('../../assets/images/landing/social/Facebook.svg'); */
+const MediumIcon = require('../../assets/images/landing/social/Medium.svg');
 //const CoinMarketIcon = require('../../assets/images/landing/social/CoinMarket.svg');
 const Logo = require('../../assets/images/logo.svg');
 const email = require('./icon/email.svg');
@@ -67,13 +67,13 @@ class FooterComponent extends React.Component<RouterProps> {
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto">
               <div>
                 <h5 className="text-uppercase font-weight-bold">Social</h5>
-                <a href="#" className="gplus-ic" target="blank">
-                  <img src={FacebookIcon} alt="Facebook" />
+                <a href="https://circleex.medium.com/" className="gplus-ic" target="blank">
+                  <img src={MediumIcon} alt="Facebook" />
                 </a>
-                <a href="#" className="gplus-ic" target="blank">
+                <a href="https://twitter.com/exchange_circle" className="gplus-ic" target="blank">
                   <img src={TwitterIcon} alt="Twitter" />
                 </a>
-                <a href="#" className="gplus-ic" target="blank">
+                <a href="https://t.me/circleex" className="gplus-ic" target="blank">
                   <img src={TelegramIcon} alt="Telegram" />
                 </a>
               </div>
