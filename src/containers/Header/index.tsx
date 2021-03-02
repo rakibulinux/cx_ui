@@ -77,7 +77,7 @@ class Head extends React.Component<Props, State> {
           <Link className="market" to="/trading">Market</Link>
           <Link className="market" to="/ieo">Launchpad</Link>
           <Link className="market" to="/airdrop">Airdrop Hub</Link>
-          <Link className="market new" to="/trading-competition">Trade Competition</Link>
+          <Link className="market" to="/trading-competition">Trade Competition</Link>
         </div>
         <div className="navbar__item-right">
           {this.renderWalletLink()}
