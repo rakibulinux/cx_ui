@@ -64,9 +64,9 @@ class Landing extends React.Component<Props> {
               </div>
               <div className="pg-landing-screen__market-info__wrap__box__content__subx">
                 <span>Follow CircleEx Media:</span>
-                <a href="https://www.facebook.com/lukutex" target="blank"><img src={FacebookIcon} alt="facebook" /></a>
+                <a href="https://www.facebook.com/CircleEx" target="blank"><img src={FacebookIcon} alt="facebook" /></a>
                 <a href="https://twitter.com/CircleEx" target="blank"><img src={TwitterIcon} alt="twitter" /></a>
-                <a href="https://t.me/lukutex_office" target="blank"><img src={TelegramIcon} alt="telegram" /></a>
+                <a href="https://t.me/CircleEx_office" target="blank"><img src={TelegramIcon} alt="telegram" /></a>
               </div>
               <div className="pg-landing-screen__market-info__wrap__box__content__button">
                 {this.airdropButton()}

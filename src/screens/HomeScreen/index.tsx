@@ -157,7 +157,7 @@ export const HomeScreen: React.FC<any> = (props: any) => {
             <div className="pc-index-downlod-title">
               <h3 className="pc-index-download-tit">Trade anytime, anywhere.</h3>
               <div className="pc-index-download-con">
-                <p>Download the LukuTex App, start your trading journey today.</p>
+                <p>Download the CircleEx App, start your trading journey today.</p>
               </div>
             </div>
             <div className="pc-index-download">

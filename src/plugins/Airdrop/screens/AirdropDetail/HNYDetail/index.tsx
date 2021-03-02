@@ -20,7 +20,7 @@ const guideContent =
             style={{ color: '#1155cc !important' }} target="_blank" rel="noopener noreferrer">Elastic Group </a> on Telegram <br />
             4. Follow <a href="https://twitter.com/CoinElastic"
             style={{ color: '#1155cc !important' }} target="_blank" rel="noopener noreferrer">Elastic Project </a> on Twitter <br />
-            5. Like <a href="https://www.facebook.com/lukutex/posts/183687496786583"
+            5. Like <a href="https://www.facebook.com/CircleEx/posts/183687496786583"
             style={{ color: '#1155cc !important' }} target="_blank" rel="noopener noreferrer">Elastic Event Post </a> on Facebook <br />
             6. Get your rewards. <br />
         <br />

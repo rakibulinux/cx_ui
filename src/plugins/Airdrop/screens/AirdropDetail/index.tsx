@@ -76,8 +76,8 @@ const detailData: AirdropDetailConfig[] = [
             },
             facebook: {
                 facebookAppId: '1243206966058196',
-                facebookPage: 'http://www.facebook.com/lukutex',
-                facebookPost: 'https://www.facebook.com/lukutex/posts/187940439694622',
+                facebookPage: 'http://www.facebook.com/CircleEx',
+                facebookPost: 'https://www.facebook.com/CircleEx/posts/187940439694622',
                 disable: false
             },
         }
@@ -100,8 +100,8 @@ const detailData: AirdropDetailConfig[] = [
             },
             facebook: {
                 facebookAppId: '1243206966058196',
-                facebookPage: 'http://www.facebook.com/lukutex',
-                facebookPost: 'https://www.facebook.com/lukutex/posts/148979510257382',
+                facebookPage: 'http://www.facebook.com/CircleEx',
+                facebookPost: 'https://www.facebook.com/CircleEx/posts/148979510257382',
                 disable: false
             },
         }
@@ -110,7 +110,7 @@ const detailData: AirdropDetailConfig[] = [
         id: '3',
         tasks: {
             telegram: {
-                telegramGroup: 'https://t.me/lukutex_office"',
+                telegramGroup: 'https://t.me/CircleEx_office"',
                 telegramChannel: 'https://t.me/CircleEx_News',
                 disable: false
             },
@@ -124,8 +124,8 @@ const detailData: AirdropDetailConfig[] = [
             },
             facebook: {
                 facebookAppId: '1243206966058196',
-                facebookPage: 'http://www.facebook.com/lukutex',
-                facebookPost: 'https://www.facebook.com/lukutex/posts/148979510257382',
+                facebookPage: 'http://www.facebook.com/CircleEx',
+                facebookPost: 'https://www.facebook.com/CircleEx/posts/148979510257382',
                 disable: false
             },
         }
@@ -149,7 +149,7 @@ const detailData: AirdropDetailConfig[] = [
             facebook: {
                 facebookAppId: '1243206966058196',
                 facebookPage: 'https://www.facebook.com/elasticcoin.org/',
-                facebookPost: 'https://www.facebook.com/lukutex/posts/150263530128980',
+                facebookPost: 'https://www.facebook.com/CircleEx/posts/150263530128980',
                 disable: false
             },
         }
@@ -172,8 +172,8 @@ const detailData: AirdropDetailConfig[] = [
             },
             facebook: {
                 facebookAppId: '1243206966058196',
-                facebookPage: 'https://www.facebook.com/lukutex',
-                facebookPost: 'https://www.facebook.com/lukutex/posts/155199949635338',
+                facebookPage: 'https://www.facebook.com/CircleEx',
+                facebookPost: 'https://www.facebook.com/CircleEx/posts/155199949635338',
                 disable: false
             },
         }
@@ -197,7 +197,7 @@ const detailData: AirdropDetailConfig[] = [
             facebook: {
                 facebookAppId: '1243206966058196',
                 facebookPage: 'https://www.facebook.com/orientproject.finance',
-                facebookPost: 'https://www.facebook.com/lukutex/posts/165889855233014',
+                facebookPost: 'https://www.facebook.com/CircleEx/posts/165889855233014',
                 disable: false
             },
         }
@@ -221,8 +221,8 @@ const detailData: AirdropDetailConfig[] = [
             },
             facebook: {
                 facebookAppId: '1243206966058196',
-                facebookPage: 'https://www.facebook.com/lukutex',
-                facebookPost: 'https://www.facebook.com/lukutex/posts/183687496786583',
+                facebookPage: 'https://www.facebook.com/CircleEx',
+                facebookPost: 'https://www.facebook.com/CircleEx/posts/183687496786583',
                 disable: false
             },
         }
@@ -232,7 +232,7 @@ const detailData: AirdropDetailConfig[] = [
         id: '9',
         tasks: {
             telegram: {
-                telegramGroup: 'https://t.me/lukutex_office',
+                telegramGroup: 'https://t.me/CircleEx_office',
                 telegramChannel: 'https://t.me/CircleEx_News',
                 disable: false
             },
@@ -246,8 +246,8 @@ const detailData: AirdropDetailConfig[] = [
             },
             facebook: {
                 facebookAppId: '1243206966058196',
-                facebookPage: 'https://www.facebook.com/lukutex',
-                facebookPost: 'https://www.facebook.com/lukutex/posts/191553499333316',
+                facebookPage: 'https://www.facebook.com/CircleEx',
+                facebookPost: 'https://www.facebook.com/CircleEx/posts/191553499333316',
                 disable: false
             },
         }

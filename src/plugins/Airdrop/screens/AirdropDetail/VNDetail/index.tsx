@@ -13,11 +13,11 @@ interface VNDetailProps {
 const guideContent =
     <p>     <strong style={{ textDecoration: 'underline' }}>Task Step</strong> <br /><br />
             1. Have an account/register on CircleEx<br />
-            2. Join <a href="https://t.me/lukutex_office"
+            2. Join <a href="https://t.me/CircleEx_office"
             style={{ color: '#1155cc !important' }} target="_blank" rel="noopener noreferrer">CircleEx Group </a> on Telegram <br />
             3. Follow <a href="https://twitter.com/CircleEx"
             style={{ color: '#1155cc !important' }} target="_blank" rel="noopener noreferrer">CircleEx Exchange </a> on Twitter <br />
-            4. Like <a href="https://www.facebook.com/lukutex"
+            4. Like <a href="https://www.facebook.com/CircleEx"
             style={{ color: '#1155cc !important' }} target="_blank" rel="noopener noreferrer">CircleEx Fanpage </a> on Facebook <br />
             5. Get your rewards. <br />
         <br />

@@ -69,7 +69,7 @@ export const TelegramTab: React.FC<TelegramTabProps> = (props: TelegramTabProps)
     {
       key: '3',
       step: '3',
-      task: 'Enter Telegram Username Joined. Ex: @lukutex',
+      task: 'Enter Telegram Username Joined. Ex: @CircleEx',
       action: <Search
         disabled={!(joinGroupVerifyState && joinChannelVerifyState)}
         placeholder="Telegram username"

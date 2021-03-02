@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import CoinWallet from './coin-wallet.png';
 import { Button, Menu, message, Progress, Table } from 'antd';
 import { useHistory } from 'react-router';
 import Countdown from 'react-countdown';
@@ -180,11 +179,6 @@ export const AirdropTable: React.FunctionComponent = () => {
                         dataSource={dataSource}
                         columns={columns}
                     />
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-12 text-center">
-                    <img width="50%" src={CoinWallet} alt="gift" />
                 </div>
             </div>
         </div>
