@@ -13,8 +13,8 @@ const FacebookIcon = require('../../assets/images/landing/social/Facebook.svg');
 //const CoinMarketIcon = require('../../assets/images/landing/social/CoinMarket.svg');
 const Logo = require('../../assets/images/logo.svg');
 const email = require('./icon/email.svg');
-const phone = require('./icon/phone.svg')
-const office = require('./icon/office.svg')
+/* const phone = require('./icon/phone.svg')
+const office = require('./icon/office.svg') */
 
 
 class FooterComponent extends React.Component<RouterProps> {
