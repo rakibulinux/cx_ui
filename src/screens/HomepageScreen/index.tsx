@@ -1,12 +1,56 @@
 import * as React from 'react'
 import Particles from 'react-particles-js';
+import { AreaChart, Area, ResponsiveContainer } from 'recharts';
 
 export const HomepageScreen = () => {
+    const data = [
+        {
+            name: 'Page A',
+            uv: 4000,
+            pv: 2400,
+            amt: 2400,
+        },
+        {
+            name: 'Page B',
+            uv: 3000,
+            pv: 1398,
+            amt: 2210,
+        },
+        {
+            name: 'Page C',
+            uv: 2000,
+            pv: 9800,
+            amt: 2290,
+        },
+        {
+            name: 'Page D',
+            uv: 2780,
+            pv: 3908,
+            amt: 2000,
+        },
+        {
+            name: 'Page E',
+            uv: 1890,
+            pv: 4800,
+            amt: 2181,
+        },
+        {
+            name: 'Page F',
+            uv: 2390,
+            pv: 3800,
+            amt: 2500,
+        },
+        {
+            name: 'Page G',
+            uv: 3490,
+            pv: 4300,
+            amt: 2100,
+        },
+    ];
 
     const Transaction = () => {
-
         return (
-            <div className="container" style={{ border: '1px solid #423D81', borderRadius: '5px', padding: '2rem 1.5rem' }}>
+            <div className="container" style={{ border: '1px solid #423D81', borderRadius: '5px', padding: '2rem 2rem 5rem 2rem' }}>
                 <div className="row">
                     <div className="col-12">
                         BIKI/USDT
@@ -19,6 +63,19 @@ export const HomepageScreen = () => {
                             style={{ fontSize: '2rem' }}>
                             0.04095
                         </strong> = <span className="text-secondary">$.0.04</span>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12" style={{ position: 'absolute', bottom: 0, left: 0 }}>
+                    <ResponsiveContainer width='100%' aspect={4.0/1.0}>
+                        <AreaChart
+                            
+                            data={data}
+                        >
+                            <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+                        </AreaChart>
+                        </ResponsiveContainer>
+
                     </div>
                 </div>
             </div>
