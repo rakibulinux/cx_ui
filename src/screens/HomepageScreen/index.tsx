@@ -2,11 +2,42 @@ import * as React from 'react'
 import Particles from 'react-particles-js';
 import { AreaChart, Area, ResponsiveContainer } from 'recharts';
 import { HomeMarkets } from '../../containers';
+import styled from 'styled-components';
 
 import AppStore from './assets/app_store_download.png';
 import GooglePlay from './assets/google_play_download.png';
 import AndroidAPK from './assets/android_apk_download.png';
 import Scan from './assets/scan_download.png';
+
+const CreateAccountFormStyles = styled.div`
+    input {
+        width: 460px;
+        height: 60px;
+        letter-spacing: 1px;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 4px;
+        font-size: 18px;
+        box-sizing: border-box;
+        padding: 0 12px;
+        margin-right: 20px;
+        margin-top: 70px;
+        background-color: #1e104d;
+        color: #fff;
+    }
+
+    button {
+        min-width: 136px;
+        height: 60px;
+        border-radius: 4px;
+        font-size: 18px;
+        box-sizing: border-box;
+        padding: 0 30px;
+        background-color: #311A7E !important;
+        color: #fff;
+        border: none;
+    }
+`
 
 export const HomepageScreen = () => {
     const data = [
@@ -56,7 +87,7 @@ export const HomepageScreen = () => {
 
     const Transaction = () => {
         return (
-            <div className="container" style={{ border: '1px solid #423D81', borderRadius: '5px', padding: '2rem 2rem 5rem 2rem' }}>
+            <div className="container" style={{ border: '1px solid #423D81',  backgroundColor: '#1e104d', borderRadius: '5px', padding: '2rem 2rem 5rem 2rem' }}>
                 <div className="row">
                     <div className="col-12">
                         BIKI/USDT
@@ -89,11 +120,11 @@ export const HomepageScreen = () => {
 
     const Download = () => {
         return (
-            <div id="download" style={{ padding: '150px 0', backgroundColor: '#311A7E', marginTop: '100px' }}>
+            <div id="download" style={{ padding: '150px 0', backgroundColor: '#311A7E' }}>
                 <div className="container">
                     <div className="row">
                         <div className="col-6">
-                            <div className="row" style={{marginTop: '80px'}}>
+                            <div className="row" style={{ marginTop: '80px' }}>
                                 <div className="col-12">
                                     <h1>Trade anytime and anywhere</h1>
                                     <h4 className="mt-5">
@@ -103,16 +134,16 @@ export const HomepageScreen = () => {
                             </div>
                             <div className="row mt-5">
                                 <div className="col-6">
-                                    <img className="img-fluid" src={AppStore} alt="apple+store"/>
+                                    <img className="img-fluid" src={AppStore} alt="apple+store" />
                                 </div>
                                 <div className="col-6">
-                                    <img className="img-fluid" src={GooglePlay} alt="google+play"/>
+                                    <img className="img-fluid" src={GooglePlay} alt="google+play" />
                                 </div>
                                 <div className="col-6 mt-3">
-                                    <img className="img-fluid" src={AndroidAPK} alt="android+apk"/>
+                                    <img className="img-fluid" src={AndroidAPK} alt="android+apk" />
                                 </div>
                                 <div className="col-6 mt-3">
-                                    <img width="255px" src={Scan} alt="scan+qrcode"/>
+                                    <img width="255px" src={Scan} alt="scan+qrcode" />
                                 </div>
                             </div>
                         </div>
@@ -127,33 +158,36 @@ export const HomepageScreen = () => {
 
     const TokenTransaction = () => {
         return (
-            <div className="container" style={{ paddingBottom: '100px' }}>
-                <div className="row">
-                    <div className="col-12">
-                        <h1 className="text-center">Supports global and popular token transactions</h1>
+            <div id="token-transactions" style={{ backgroundColor: '#311A7E' }}>
+                <div className="container" style={{ padding: '100px 0' }}>
+                    <div className="row">
+                        <div className="col-12">
+                            <h1 className="text-center">Supports global and popular token transactions</h1>
+                        </div>
                     </div>
-                </div>
-                <div className="row mt-3">
-                    <div className="col-3">
-                        <Transaction />
-                    </div>
-                    <div className="col-3">
-                        <Transaction />
-                    </div>
-                    <div className="col-3">
-                        <Transaction />
-                    </div>
-                    <div className="col-3">
-                        <Transaction />
+                    <div className="row mt-3">
+                        <div className="col-3">
+                            <Transaction />
+                        </div>
+                        <div className="col-3">
+                            <Transaction />
+                        </div>
+                        <div className="col-3">
+                            <Transaction />
+                        </div>
+                        <div className="col-3">
+                            <Transaction />
+                        </div>
                     </div>
                 </div>
             </div>
+
         );
     }
 
     const Markets = () => {
         return (
-            <div className="container">
+            <div className="container-fluid" style={{ padding: '100px 5%' }}>
                 <div className="row">
                     <div className="col-12">
                         <HomeMarkets />
@@ -162,6 +196,34 @@ export const HomepageScreen = () => {
             </div>
         );
     }
+
+    const StartTrading = () => {
+        return (
+            <div id="start-trading" style={{ padding: '150px 0' }}>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <h1 className="text-center">Start trading on Circle Exchange</h1>
+                            <h3 className="text-center">Start your trading freely in Bitcoin and many others cryptocurrencies in just 2 minutes!</h3>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-12 d-flex justify-content-center align-content-center flex-fill">
+                            <form className="form-group">
+                                <CreateAccountFormStyles>
+                                    <input type="email" placeholder="Your mobile number or email address" />
+                                    <button type="submit">Create account</button>
+                                </CreateAccountFormStyles>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+
     return (
         <React.Fragment>
             <div>
@@ -172,6 +234,7 @@ export const HomepageScreen = () => {
             {TokenTransaction()}
             {Markets()}
             {Download()}
+            {StartTrading()}
         </React.Fragment>
 
     )

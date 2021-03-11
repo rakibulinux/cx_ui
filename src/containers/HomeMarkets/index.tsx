@@ -9,6 +9,8 @@ const Styles = styled.div`
     border-spacing: 0;
     border: 1px solid black;
     tr {
+        background-color: #2A166D;
+
       :last-child {
         td {
           border-bottom: 0;
@@ -18,6 +20,7 @@ const Styles = styled.div`
     th,
     td {
       margin: 0;
+      font-size: 1.2rem;
       padding: 1rem 0.5rem;
       color: #fff;
       text-align: center;
@@ -26,6 +29,9 @@ const Styles = styled.div`
       :last-child {
         border-right: 0;
       }
+    }
+    th {
+        background-color: #23135B;
     }
   }
 `
