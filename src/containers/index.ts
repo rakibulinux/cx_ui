@@ -32,3 +32,4 @@ export * from './WalletsFetch';
 export * from './Withdraw';
 export * from './MarketTrading';
 export * from './FeeTable';
+export * from './HomeMarkets';

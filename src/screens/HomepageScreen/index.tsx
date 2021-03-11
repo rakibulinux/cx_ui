@@ -1,6 +1,12 @@
 import * as React from 'react'
 import Particles from 'react-particles-js';
 import { AreaChart, Area, ResponsiveContainer } from 'recharts';
+import { HomeMarkets } from '../../containers';
+
+import AppStore from './assets/app_store_download.png';
+import GooglePlay from './assets/google_play_download.png';
+import AndroidAPK from './assets/android_apk_download.png';
+import Scan from './assets/scan_download.png';
 
 export const HomepageScreen = () => {
     const data = [
@@ -67,15 +73,52 @@ export const HomepageScreen = () => {
                 </div>
                 <div className="row">
                     <div className="col-12" style={{ position: 'absolute', bottom: 0, left: 0 }}>
-                    <ResponsiveContainer width='100%' aspect={4.0/1.0}>
-                        <AreaChart
-                            
-                            data={data}
-                        >
-                            <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-                        </AreaChart>
+                        <ResponsiveContainer width='100%' aspect={4.0 / 1.0}>
+                            <AreaChart
+                                data={data}
+                            >
+                                <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+                            </AreaChart>
                         </ResponsiveContainer>
 
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    const Download = () => {
+        return (
+            <div id="download" style={{ padding: '150px 0', backgroundColor: '#311A7E', marginTop: '100px' }}>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-6">
+                            <div className="row" style={{marginTop: '80px'}}>
+                                <div className="col-12">
+                                    <h1>Trade anytime and anywhere</h1>
+                                    <h4 className="mt-5">
+                                        Download CircleEx APP, you will be able to easily at any time, anywhere trading global mainstream, popular digital assets.
+                                    </h4>
+                                </div>
+                            </div>
+                            <div className="row mt-5">
+                                <div className="col-6">
+                                    <img className="img-fluid" src={AppStore} alt="apple+store"/>
+                                </div>
+                                <div className="col-6">
+                                    <img className="img-fluid" src={GooglePlay} alt="google+play"/>
+                                </div>
+                                <div className="col-6 mt-3">
+                                    <img className="img-fluid" src={AndroidAPK} alt="android+apk"/>
+                                </div>
+                                <div className="col-6 mt-3">
+                                    <img width="255px" src={Scan} alt="scan+qrcode"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-6">
+                            <img className="img-fluid" src="https://newbikicoin.oss-cn-hangzhou.aliyuncs.com/biki/bikiIndex/422317e84cd9e6b0da2aa236fb9fc634_en.png" alt="" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -107,6 +150,18 @@ export const HomepageScreen = () => {
             </div>
         );
     }
+
+    const Markets = () => {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                        <HomeMarkets />
+                    </div>
+                </div>
+            </div>
+        );
+    }
     return (
         <React.Fragment>
             <div>
@@ -115,6 +170,8 @@ export const HomepageScreen = () => {
                 />
             </div>
             {TokenTransaction()}
+            {Markets()}
+            {Download()}
         </React.Fragment>
 
     )

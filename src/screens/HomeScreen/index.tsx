@@ -1,7 +1,5 @@
 import * as React  from "react";
 import { Link } from "react-router-dom";
-import {MarketsTableScreen} from '../../containers/MarketsTableScreen';
-
 import {Row, Col } from 'react-bootstrap';
 import Slider from "react-slick";
 
@@ -109,7 +107,6 @@ export const HomeScreen: React.FC<any> = (props: any) => {
           <div className="container">
             <div className="row">
               <div className="col-12">
-              <MarketsTableScreen />
               </div>
             </div>
           </div>
