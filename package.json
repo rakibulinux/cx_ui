@@ -4,7 +4,6 @@
     "private": true,
     "dependencies": {
         "@ant-design/icons": "^4.3.0",
-        "@brainhubeu/react-carousel": "^1.19.26",
         "@formatjs/intl-pluralrules": "^3.2.5",
         "@formatjs/intl-relativetimeformat": "^7.0.0",
         "@openware/cryptofont": "2.3.0",
@@ -61,6 +60,7 @@
         "react-table": "^7.6.3",
         "react-trend": "^1.2.5",
         "react-twitter-widgets": "^1.9.5",
+        "react-typed": "^1.2.0",
         "recharts": "1.8.5",
         "redux": "^4.0.1",
         "redux-saga": "^1.1.3",

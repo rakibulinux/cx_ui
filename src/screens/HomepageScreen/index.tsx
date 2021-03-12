@@ -3,14 +3,15 @@ import Particles from 'react-particles-js';
 import { AreaChart, Area, ResponsiveContainer } from 'recharts';
 import { HomeMarkets } from '../../containers';
 import styled from 'styled-components';
+import Typed from 'react-typed';
 
 import AppStore from './assets/app_store_download.png';
 import GooglePlay from './assets/google_play_download.png';
 import AndroidAPK from './assets/android_apk_download.png';
 import Scan from './assets/scan_download.png';
 
-import Carousel, { slidesToShowPlugin } from '@brainhubeu/react-carousel';
-import '@brainhubeu/react-carousel/lib/style.css';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 const CreateAccountFormStyles = styled.div`
     input {
@@ -161,7 +162,7 @@ export const HomepageScreen = () => {
 
     const TokenTransaction = () => {
         return (
-            <div id="token-transactions" style={{ backgroundColor: '#311A7E', marginTop: '1rem' }}>
+            <div id="token-transactions" style={{ backgroundColor: '#311A7E', marginTop: '1rem', zIndex: 1 }}>
                 <div className="container" style={{ padding: '100px 0' }}>
                     <div className="row">
                         <div className="col-12">
@@ -226,39 +227,71 @@ export const HomepageScreen = () => {
         );
     }
 
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 4,
+            slidesToSlide: 1 // optional, default to 1.
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2,
+            slidesToSlide: 1 // optional, default to 1.
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            slidesToSlide: 1 // optional, default to 1.
+        }
+    };
+
     return (
         <React.Fragment>
-            <div style={{ position: 'relative', width: '100vw', height: '90vh' }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-                    <Particles
-                        params={{ "particles": { "number": { "value": 150, "density": { "enable": true, "value_area": 1803.4120608655228 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle", "stroke": { "width": 2, "color": "#000000" }, "polygon": { "nb_sides": 4 }, "image": { "src": "img/github.svg", "width": 100, "height": 100 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 1.5, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 0, "color": "#ffffff", "opacity": 0.3687847739990702, "width": 0.6413648243462091 }, "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "window", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": false, "mode": "bubble" }, "resize": true }, "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, }, "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, }}
-                    />
+            <div style={{ position: 'relative', width: '100vw', height: '80vh', zIndex: 0 }}>
+                <Particles
+                    style={{ position: 'absolute', width: '100%', height: '100%' }}
+                    params={{ "particles": { "number": { "value": 100 } } }}
+                // params={{ "particles": { "number": { "value": 300, "density": { "enable": true, "value_area": 1803.4120608655228 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle", "stroke": { "width": 2, "color": "#000000" }, "polygon": { "nb_sides": 4 }, "image": { "src": "img/github.svg", "width": 100, "height": 100 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 1.5, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 0, "color": "#ffffff", "opacity": 0.3687847739990702, "width": 0.6413648243462091 }, "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "window", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": false, "mode": "bubble" }, "resize": true }, "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, }, "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, }}
+                />
 
-                </div>
 
                 <div style={{ position: 'absolute', top: '100px', left: 0, width: '100%', height: '20%' }}>
                     <h1 className="text-center" style={{ fontSize: '6rem' }}>Circle Exchange</h1>
-                    <h2 className="text-center">Trade Bitcoin, Ethereum and other cryptos instantly</h2>
+                    <h2 className="text-center">
+                        <Typed
+                            strings={['Trade Bitcoin, Ethereum and other cryptos instantly', 'Secure / Stable / Reliable']}
+                            typeSpeed={25}
+                            backSpeed={15}
+                            loop
+                        />
+                    </h2>
                 </div>
-                <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '30%' }}>
-                    <Carousel
-                        plugins={[
-                            {
-                                resolve: slidesToShowPlugin,
-                                options: {
-                                    numberOfSlides: 5
-                                }
-                            },
-                        ]}
-                    >
-                        <img className="img-fluid" src={AppStore} />
-                        <img className="img-fluid" src={AppStore} />
-                        <img className="img-fluid" src={AppStore} />
-                        <img className="img-fluid" src={AppStore} />
-                        <img className="img-fluid" src={AppStore} />
-                    </Carousel>
+                <div className="container-fluid" style={{ position: 'absolute', bottom: 0, padding: '0 50px' }}>
+                    <div className="row">
+                        <div className="col-12">
+                            <Carousel
+                                responsive={responsive}
+                                swipeable={false}
+                                draggable={false}
+                                showDots={true}
+                                infinite={true}
+                                autoPlay={true}
+                                autoPlaySpeed={3000}
+                                keyBoardControl={true}
+                            >
+                                <img className="img-fluid" style={{ padding: '0 1rem' }} src="https://staticprod.mpuuss.top/cms/banner/2021030911283002328.jpg" />
+                                <img className="img-fluid" style={{ padding: '0 1rem' }} src="https://staticprod.mpuuss.top/cms/banner/2021030819280630536.jpg" />
+                                <img className="img-fluid" style={{ padding: '0 1rem' }} src="https://staticprod.mpuuss.top/cms/banner/2021030519362210571.jpg" />
+                                <img className="img-fluid" style={{ padding: '0 1rem' }} src="https://staticprod.mpuuss.top/cms/banner/2021030911283002328.jpg" />
+                                <img className="img-fluid" style={{ padding: '0 1rem' }} src="https://staticprod.mpuuss.top/cms/banner/2021030819280630536.jpg" />
+                                <img className="img-fluid" style={{ padding: '0 1rem' }} src="https://staticprod.mpuuss.top/cms/banner/2021030519362210571.jpg" />
+                                <img className="img-fluid" style={{ padding: '0 1rem' }} src="https://staticprod.mpuuss.top/cms/banner/2021030911283002328.jpg" />
+                                <img className="img-fluid" style={{ padding: '0 1rem' }} src="https://staticprod.mpuuss.top/cms/banner/2021030819280630536.jpg" />
+                                <img className="img-fluid" style={{ padding: '0 1rem' }} src="https://staticprod.mpuuss.top/cms/banner/2021030519362210571.jpg" />
+                            </Carousel>
+                        </div>
+                    </div>
                 </div>
-
             </div>
 
             {TokenTransaction()}

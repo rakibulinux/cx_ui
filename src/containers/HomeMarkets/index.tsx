@@ -28,41 +28,6 @@ const defaultTicker = {
     volume: '0.0',
 };
 
-const Styles = styled.div`
-  padding: 1rem;
-  table {
-    width: 100%;
-    border-spacing: 0;
-    border: 1px solid black;
-    tr {
-        background-color: #2A166D;
-
-      :last-child {
-        td {
-          border-bottom: 0;
-        }
-      }
-    }
-    th,
-    td {
-      margin: 0;
-      cursor: pointer;
-      font-size: 1.2rem;
-      padding: 1rem 0.5rem;
-      color: #fff;
-      text-align: center;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
-      :last-child {
-        border-right: 0;
-      }
-    }
-    th {
-        background-color: #23135B;
-    }
-  }
-`
-
 function Table({ columns, data }) {
     // Use the state and functions returned from useTable to build your UI
     const {
@@ -144,7 +109,6 @@ export const HomeMarkets = () => {
     }
 
     const formattedMarkets = markets.length > 0 ? markets.map((market, index) => {
-
         // value
         const last = Number((marketTickers[market.id] || defaultTicker).last);
         const open = Number((marketTickers[market.id] || defaultTicker).open);
@@ -159,16 +123,18 @@ export const HomeMarkets = () => {
 
         const newMarket = {
             ...market,
-            name:  <span onClick={() => handleRedirectToTrading(market.id)}>{market.name}</span>,
+            name: <span onClick={() => handleRedirectToTrading(market.id)}>{market.name}</span>,
             last: <span style={{ color: marketChangeColor, fontWeight: 'bold' }} onClick={() => handleRedirectToTrading(market.id)}>{Decimal.format(last, 6)}</span>,
             open: Decimal.format(open, 6),
             price_change_percent: <span style={{ color: marketChangeColor, fontWeight: 'bold' }} onClick={() => handleRedirectToTrading(market.id)}>{String(price_change_percent)}</span>,
-            high:  <span onClick={() => handleRedirectToTrading(market.id)}>{Decimal.format(high, 6)}</span>,
-            low:  <span onClick={() => handleRedirectToTrading(market.id)}>{Decimal.format(low, 6)}</span>,
+            high: <span onClick={() => handleRedirectToTrading(market.id)}>{Decimal.format(high, 6)}</span>,
+            low: <span onClick={() => handleRedirectToTrading(market.id)}>{Decimal.format(low, 6)}</span>,
             volume: <span style={{ color: marketChangeColor, fontWeight: 'bold' }} onClick={() => handleRedirectToTrading(market.id)}>{Decimal.format(volume, market.amount_precision)}</span>,
             number: <span onClick={() => handleRedirectToTrading(market.id)}>{(index + 1)}</span>,
             change: Decimal.format(change.toFixed(market.price_precision), market.price_precision),
-            trade: <button type="button" className="btn btn-primary" style={{padding: '0.5rem 1.5rem'}}>TRADE</button>
+            trade: <button type="button" className="btn" style={{
+                padding: '0.5rem 1.5rem', color: '#fff', background: 'linear-gradient(145deg, #4625b8, #3b209b)', fontWeight: 'bold'
+            }}>TRADE</button>
         }
         return newMarket;
     }
@@ -183,9 +149,77 @@ export const HomeMarkets = () => {
 
     const data = formattedMarkets;
 
+    const renderHeader = () => {
+
+        return (
+            currentBidUnitsList.map((item, i) => {
+                const isActive = item == currentBidUnit ? '145deg, #5321a4, #461c8a' : '145deg, #3d21a3, #331c89';
+                return (
+                    <button
+                        className="btn"
+                        style={{
+                            padding: '0.5rem 3rem', marginLeft: '1rem', color: '#fff', background: `linear-gradient(${isActive})`, fontWeight: 'bold'
+                        }}
+                        key={i}
+                        onClick={() => setCurrentBidUnit(item)}
+                    >
+                        <span >
+                            {item ? item.toUpperCase() : 'All'}
+                        </span>
+                    </button>
+                )
+            })
+
+        );
+
+    }
+
+    const renderTable = () => {
+        const Styles = styled.div`
+            padding: 1rem;
+            table {
+                width: 100%;
+                border-spacing: 0;
+                border: 1px solid black;
+                tr {
+                    background-color: #2A166D;
+
+                :last-child {
+                    td {
+                    border-bottom: 0;
+                    }
+                }
+                }
+                th,
+                td {
+                margin: 0;
+                cursor: pointer;
+                font-size: 1.2rem;
+                padding: 1rem 0.5rem;
+                color: #fff;
+                text-align: center;
+                border-bottom: 1px solid black;
+                border-right: 1px solid black;
+                :last-child {
+                    border-right: 0;
+                }
+                }
+                th {
+                    background-color: #23135B;
+                }
+            }
+        `
+        return (
+            <Styles>
+                <Table columns={columns} data={data} />
+            </Styles>
+        );
+    }
+
     return (
-        <Styles>
-            <Table columns={columns} data={data} />
-        </Styles>
+        <React.Fragment>
+            {renderHeader()}
+            {renderTable()}
+        </React.Fragment>
     )
 }
