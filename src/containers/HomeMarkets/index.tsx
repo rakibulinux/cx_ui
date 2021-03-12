@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { useTable } from 'react-table';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 import { Decimal } from '../../components';
 import {
@@ -13,8 +13,10 @@ import {
     Market,
     selectMarkets,
     selectMarketTickers,
+    setCurrentMarket,
     // setCurrentMarket,
 } from '../../modules';
+import { useHistory } from 'react-router';
 
 const defaultTicker = {
     amount: '0.0',
@@ -44,6 +46,7 @@ const Styles = styled.div`
     th,
     td {
       margin: 0;
+      cursor: pointer;
       font-size: 1.2rem;
       padding: 1rem 0.5rem;
       color: #fff;
@@ -105,27 +108,26 @@ export const HomeMarkets = () => {
     useMarketsFetch();
     useMarketsTickersFetch();
     useRangerConnectFetch();
-    // const history = useHistory();
-    // const dispatch = useDispatch();
+    const history = useHistory();
+    const dispatch = useDispatch();
     const markets = useSelector(selectMarkets);
     const marketTickers = useSelector(selectMarketTickers);
-    // const [currentBidUnit, setCurrentBidUnit] = React.useState('');
+    const [currentBidUnit, setCurrentBidUnit] = React.useState('');
 
-    // const handleRedirectToTrading = (id: string) => {
-    //     const currentMarket: Market | undefined = markets.find(item => item.id === id);
+    const handleRedirectToTrading = (id: string) => {
+        setCurrentBidUnit(id); // remove
+        const currentMarket: Market | undefined = markets.find(item => item.id === id);
 
-    //     if (currentMarket) {
-    //         // props.handleChangeCurrentMarket && props.handleChangeCurrentMarket(currentMarket);
-    //         dispatch(setCurrentMarket(currentMarket));
-    //         history.push(`/trading/${currentMarket.id}`);
-    //     }
-    // };
+        if (currentMarket) {
+            dispatch(setCurrentMarket(currentMarket));
+            history.push(`/trading/${currentMarket.id}`);
+        }
+    };
 
     const formatFilteredMarkets = (list: string[], market: Market) => {
         if (!list.includes(market.quote_unit)) {
             list.push(market.quote_unit);
         }
-
         return list;
     };
 
@@ -135,69 +137,51 @@ export const HomeMarkets = () => {
         currentBidUnitsList = markets.reduce(formatFilteredMarkets, currentBidUnitsList);
     }
 
-    // let currentBidUnitMarkets = props.markets || markets;
+    let currentBidUnitMarkets = markets;
 
-    // if (currentBidUnit) {
-    //     currentBidUnitMarkets = currentBidUnitMarkets.length ? currentBidUnitMarkets.filter(market => market.quote_unit === currentBidUnit) : [];
-    // }
+    if (currentBidUnit) {
+        currentBidUnitMarkets = currentBidUnitMarkets.length ? currentBidUnitMarkets.filter(market => market.quote_unit === currentBidUnit) : [];
+    }
 
-    const formattedMarkets = markets.length > 0 ? markets.map(market =>
-        ({
+    const formattedMarkets = markets.length > 0 ? markets.map((market, index) => {
+
+        // value
+        const last = Number((marketTickers[market.id] || defaultTicker).last);
+        const open = Number((marketTickers[market.id] || defaultTicker).open);
+        const price_change_percent = (marketTickers[market.id] || defaultTicker).price_change_percent;
+        const high = Number((marketTickers[market.id] || defaultTicker).high);
+        const low = Number((marketTickers[market.id] || defaultTicker).low);
+        const volume = Number((marketTickers[market.id] || defaultTicker).volume);
+        const change = (+last - +open);
+
+        // color
+        const marketChangeColor = +(change || 0) < 0 ? "#e63946" : "#2ec4b6";
+
+        const newMarket = {
             ...market,
-            last: Decimal.format(Number((marketTickers[market.id] || defaultTicker).last), 6),
-            open: Decimal.format(Number((marketTickers[market.id] || defaultTicker).open), 6),
-            price_change_percent: String((marketTickers[market.id] || defaultTicker).price_change_percent),
-            high: Decimal.format(Number((marketTickers[market.id] || defaultTicker).high), 6),
-            low: Decimal.format(Number((marketTickers[market.id] || defaultTicker).low), 6),
-            volume: Decimal.format(Number((marketTickers[market.id] || defaultTicker).volume), market.amount_precision),
-        }),
-    ).map(market =>
-        ({
-            ...market,
-            change: Decimal.format((+market.last - +market.open)
-                .toFixed(market.price_precision), market.price_precision),
-        }),
+            name:  <span onClick={() => handleRedirectToTrading(market.id)}>{market.name}</span>,
+            last: <span style={{ color: marketChangeColor, fontWeight: 'bold' }} onClick={() => handleRedirectToTrading(market.id)}>{Decimal.format(last, 6)}</span>,
+            open: Decimal.format(open, 6),
+            price_change_percent: <span style={{ color: marketChangeColor, fontWeight: 'bold' }} onClick={() => handleRedirectToTrading(market.id)}>{String(price_change_percent)}</span>,
+            high:  <span onClick={() => handleRedirectToTrading(market.id)}>{Decimal.format(high, 6)}</span>,
+            low:  <span onClick={() => handleRedirectToTrading(market.id)}>{Decimal.format(low, 6)}</span>,
+            volume: <span style={{ color: marketChangeColor, fontWeight: 'bold' }} onClick={() => handleRedirectToTrading(market.id)}>{Decimal.format(volume, market.amount_precision)}</span>,
+            number: <span onClick={() => handleRedirectToTrading(market.id)}>{(index + 1)}</span>,
+            change: Decimal.format(change.toFixed(market.price_precision), market.price_precision),
+            trade: <button type="button" className="btn btn-primary" style={{padding: '0.5rem 1.5rem'}}>TRADE</button>
+        }
+        return newMarket;
+    }
     ) : [];
 
     const columns = React.useMemo(
         () => [
-            {
-                Header: '',
-                accessor: 'id'
-            },
-            {
-                Header: 'Market',
-                accessor: 'market'
-            },
-            {
-                Header: 'Last Price',
-                accessor: 'last_price'
-            },
-            {
-                Header: '24 Change',
-                accessor: 'change'
-            },
-            {
-                Header: '24 High',
-                accessor: 'high'
-            },
-            {
-                Header: '24 Low',
-                accessor: 'low'
-            },
-            {
-                Header: '24 Volume',
-                accessor: 'volume'
-            },
-            {
-                Header: 'Trade',
-                accessor: 'trade'
-            },
+            { Header: '', accessor: 'number' }, { Header: 'Market', accessor: 'name' }, { Header: 'Last Price', accessor: 'last' }, { Header: '24 Change', accessor: 'price_change_percent' }, { Header: '24 High', accessor: 'high' }, { Header: '24 Low', accessor: 'low' }, { Header: '24 Volume', accessor: 'volume' }, { Header: 'Trade', accessor: 'trade' },
         ],
         []
     )
 
-    const data = React.useMemo(() => formattedMarkets, [])
+    const data = formattedMarkets;
 
     return (
         <Styles>
