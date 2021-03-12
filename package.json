@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "@ant-design/icons": "^4.3.0",
+        "@brainhubeu/react-carousel": "^1.19.26",
         "@formatjs/intl-pluralrules": "^3.2.5",
         "@formatjs/intl-relativetimeformat": "^7.0.0",
         "@openware/cryptofont": "2.3.0",
@@ -98,6 +99,7 @@
     "devDependencies": {
         "@openware/coding-standards": "2.3.0",
         "@types/axios": "^0.14.0",
+        "@types/brainhubeu__react-carousel": "^2.0.2",
         "@types/classnames": "^2.2.6",
         "@types/enzyme": "^3.1.13",
         "@types/enzyme-adapter-react-16": "^1.0.3",
