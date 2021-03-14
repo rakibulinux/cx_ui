@@ -126,7 +126,7 @@ export const HomePageScreen = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <Title>Put your money to work</Title>
+                        <Title>CircleEx Exchange</Title>
                         <SubTitle>Buy and sell cryptocurrencies commission-free on the world’s most secure investment platform.</SubTitle>
                     </div>
                 </div>
@@ -283,7 +283,7 @@ export const HomePageScreen = () => {
 
     const renderPoster = () => {
         return (
-            <div style={{ padding: '150px 0', backgroundColor: '#311A7E' }}>
+            <div style={{ padding: '150px 0', backgroundColor: '#292D3F' }}>
                 <div className="container">
                     <div className="row">
                         <div className="col-6">

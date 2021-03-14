@@ -20,3 +20,4 @@ export * from './RestrictedScreen';
 export * from './MaintenanceScreen';
 export * from './Feepage';
 export * from './HomePageScreen';
+export * from './HomeScreen';
