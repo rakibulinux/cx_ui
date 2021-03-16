@@ -6,24 +6,24 @@ import { selectCurrencies, selectMarkets, selectMarketTickers } from '../../modu
 // import CoinBubblesSvg from './assets/Coin_Bubbles.svg';
 import { Area, AreaChart, ResponsiveContainer } from 'recharts';
 
-import SupportPNG from './assets/support.png';
-import BlogPNG from './assets/blog.png';
-import CommunityPNG from './assets/community.png';
-import CareersPNG from './assets/careers.png';
+import RevenuePNG from './assets/revenue.png';
+import LayersPNG from './assets/layers.png';
+import CommunityPNG from './assets/people.png';
 
 import AppStore from './assets/app_store_download.png';
 import GooglePlay from './assets/google_play_download.png';
 import AndroidAPK from './assets/android_apk_download.png';
 import Scan from './assets/scan_download.png';
 
-import Exchange from './assets/exchange.png';
+import Exchange from './assets/mobile.png';
 
 import axios from 'axios';
 
 const Title = styled.h1`
     color: #fff;
-    font-size: 64px;
+    font-size: 3em;
     font-weight: bold;
+    padding-bottom: 20px;
     text-align: center;
 `;
 
@@ -225,7 +225,7 @@ export const HomePageScreen = () => {
 
         return (
             <Section>
-                <div className="container" style={{backgroundColor: '#313445ff', padding: '3rem 1.5rem', borderRadius: '1rem'}}>
+                <div className="container" style={{ backgroundColor: '#313445ff', padding: '3rem 1.5rem', borderRadius: '1rem' }}>
                     <div className="row">
                         <div className="col-3">
                             {MarketChart(KlineState1, market_ids[0])}
@@ -265,26 +265,26 @@ export const HomePageScreen = () => {
 
     const renderSupport = () => (
         <Section>
+            <div className="row">
+                <div className="col-12">
+                    <Title>Features</Title>
+                </div>
+            </div>
             <div className="container text-white">
                 <div className="row">
-                    <div className="col-3 text-center">
-                        <img className="img-fluid w-50" src={SupportPNG} alt="support" />
-                        <h3 className="mt-3">24/7 Support</h3>
+                    <div className="col-4 text-center">
+                        <img className="img-fluid w-50" src={RevenuePNG} alt="support" />
+                        <h3 className="mt-4">Revenue Sharing</h3>
                         <span>Got a problem? Just get in touch. Our support team is available 24/7.</span>
                     </div>
-                    <div className="col-3 text-center">
-                        <img className="img-fluid w-50" src={BlogPNG} alt="support" />
-                        <h3 className="mt-3">Circle Blog</h3>
+                    <div className="col-4 text-center">
+                        <img className="img-fluid w-50" src={LayersPNG} alt="support" />
+                        <h3 className="mt-4">Multi Layer Protection</h3>
                         <span>News and updates from the world’s leading cryptocurrency exchange.</span>
                     </div>
-                    <div className="col-3 text-center">
+                    <div className="col-4 text-center">
                         <img className="img-fluid w-50" src={CommunityPNG} alt="support" />
-                        <h3 className="mt-3">Community</h3>
-                        <span>Circle Exchange is global. Join the discussion in our worldwide communities.</span>
-                    </div>
-                    <div className="col-3 text-center">
-                        <img className="img-fluid w-50" src={CareersPNG} alt="support" />
-                        <h3 className="mt-3">Careers</h3>
+                        <h3 className="mt-4">Community-Driven</h3>
                         <span>Help build the future of technology. Start your new career at Circle Exchange.</span>
                     </div>
                 </div>
