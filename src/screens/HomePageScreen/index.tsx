@@ -63,7 +63,7 @@ const BASE_MARKET_URL = "https://www.lukutex.com/api/v2/peatio/public/markets";
 export const HomePageScreen = () => {
 
     const market_ids = [
-        'btc/usdt', 'eth/usdt', 'eth/usdt', 'eth/usdt', 'eth/usdt', 'eth/usdt', 'eth/usdt'
+        'btc/usdt', 'eth/usdt', 'btc/usdt', 'eth/usdt', 'btc/usdt', 'eth/usdt', 'btc/usdt'
     ]
 
     const [KlineState1, setKline1State] = React.useState<{ pv: string }>();
@@ -275,17 +275,14 @@ export const HomePageScreen = () => {
                     <div className="col-4 text-center">
                         <img className="img-fluid w-50" src={RevenuePNG} alt="support" />
                         <h3 className="mt-4">Revenue Sharing</h3>
-                        <span>Got a problem? Just get in touch. Our support team is available 24/7.</span>
                     </div>
                     <div className="col-4 text-center">
                         <img className="img-fluid w-50" src={LayersPNG} alt="support" />
                         <h3 className="mt-4">Multi Layer Protection</h3>
-                        <span>News and updates from the world’s leading cryptocurrency exchange.</span>
                     </div>
                     <div className="col-4 text-center">
                         <img className="img-fluid w-50" src={CommunityPNG} alt="support" />
                         <h3 className="mt-4">Community-Driven</h3>
-                        <span>Help build the future of technology. Start your new career at Circle Exchange.</span>
                     </div>
                 </div>
             </div>
