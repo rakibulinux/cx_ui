@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { useMarketsFetch, useMarketsTickersFetch, useRangerConnectFetch } from '../../hooks';
 import { selectCurrencies, selectMarkets, selectMarketTickers } from '../../modules';
@@ -132,7 +133,7 @@ export const HomePageScreen = () => {
                 </div>
                 <div className="row">
                     <div className="col-12 text-center">
-                        <Button>Get Started</Button>
+                        <Button style={{ color: '#3D8189ff', backgroundColor: '#2E4152ff', padding: '0.5rem 1rem' }} ><Link to="/signup">Get Started</Link></Button>
                     </div>
                 </div>
             </div>
@@ -254,7 +255,7 @@ export const HomePageScreen = () => {
                             {MarketChart(KlineState7, market_ids[6])}
                         </div>
                         <div className="col-3 d-flex justify-content-center align-items-center">
-                            <button className="btn" style={{ color: '#3D8189ff', backgroundColor: '#2E4152ff', padding: '0.5rem 1rem' }}>View All</button>
+                            <button className="btn" style={{ color: '#3D8189ff', backgroundColor: '#2E4152ff', padding: '0.5rem 1rem' }}><Link to="/signup">View all</Link></button>
                         </div>
                     </div>
                 </div>

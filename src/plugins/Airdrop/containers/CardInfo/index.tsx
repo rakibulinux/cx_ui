@@ -10,7 +10,7 @@ export class CardInfo extends React.Component<CardInfoProps> {
     render() {
         return (
             <Card
-                style={{ width: '100%', height: '100%', backgroundColor: '#282454' }}
+                style={{ width: '100%', height: '100%', backgroundColor: '#2B3139' }}
                 title={this.props.cardTitle}
             >
                 {this.props.children}

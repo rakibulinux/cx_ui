@@ -195,7 +195,7 @@ class Landing extends React.Component<Props> {
     return (
       <div className="pg-landing-screen__market-feature">
         <div className="pg-landing-screen__market-feature__wrap">
-          <div className="pg-landing-screen__market-feature__wrap__left" style={{background: '#282454'}}>
+          <div className="pg-landing-screen__market-feature__wrap__left" style={{background: '#2B3139'}}>
             <div className="item-feature">
               <div><img src={FeaturesCustomizeIcon} alt="Screen" /></div>
               <div>
