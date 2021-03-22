@@ -7,7 +7,7 @@ export const IEOListMobileScreen: React.FC = () => {
             <div style={{ position: 'relative' }}>
                 <img
                     style={{ width: '100%', margin: 0 }}
-                    src="https://i.imgur.com/JfQ1XF7.jpg" alt="ieo_banner" />
+                    src="https://i.imgur.com/2yZzXcQ.jpg" alt="ieo_banner" />
 
             </div>
             <div className="d-flex flex-row">

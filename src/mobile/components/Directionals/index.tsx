@@ -28,7 +28,7 @@ const DirectionalsComponent: React.FC = ({ }) => {
             </div>
             <div className="cr-mobile-directional-banner">
                 <a href="/ieo">
-                    <img src="https://i.imgur.com/JfQ1XF7.jpg" alt="" />
+                    <img src="https://i.imgur.com/2yZzXcQ.jpg" alt="" />
                 </a>
             </div>
         </div>
