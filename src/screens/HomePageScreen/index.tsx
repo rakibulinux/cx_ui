@@ -164,7 +164,7 @@ export const HomePageScreen = () => {
     
     const renderMarket = () => {
         const MarketChart = (data: any, marketID: string) => {
-            const market = markets.find(market => market.base_unit.toLowerCase() === marketID.split('/')[0].toLowerCase());
+            const market = markets.find(market => market.id.toLowerCase() === marketID.split('/').join().toLowerCase());
 
             if (market) {
                 const marketID = market.name.toUpperCase();
