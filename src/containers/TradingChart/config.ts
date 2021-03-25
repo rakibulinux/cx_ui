@@ -23,7 +23,7 @@ export const widgetOptions = (colorTheme?: string) => {
         enable_publishing: false,
         enabled_features: ['show_animated_logo'],
         fullscreen: false,
-        height: 1000s,
+        height: 1000,
         hide_side_toolbar: false,
         hotlist: true,
         library_path: '/charting_library/',
