@@ -7,12 +7,12 @@ export const IEOListMobileScreen: React.FC = () => {
             <div style={{ position: 'relative' }}>
                 <img
                     style={{ width: '100%', margin: 0 }}
-                    src="https://i.imgur.com/BVEzar1.png" alt="ieo_banner" />
+                    src="https://i.imgur.com/2yZzXcQ.jpg" alt="ieo_banner" />
 
             </div>
             <div className="d-flex flex-row">
-                <a className="flex-fill text-center" href="https://form.jotform.com/203166968415058" target="_blank" style={{ backgroundColor: '#457b9d', color: '#fff' }}>Apply to Launch</a>
-                <a className="flex-fill text-center" href="https://form.jotform.com/20316696841505" target="_blank" style={{ backgroundColor: '#2a9d8f', color: '#fff' }}>Open Trade Token</a>
+                <a className="flex-fill text-center" href="#" target="_blank" style={{ backgroundColor: '#457b9d', color: '#fff' }}>Apply to Launch</a>
+                <a className="flex-fill text-center" href="#" target="_blank" style={{ backgroundColor: '#2a9d8f', color: '#fff' }}>Open Trade Token</a>
             </div>
 
             <div id="sale-list-mobile" className="container-fluid">

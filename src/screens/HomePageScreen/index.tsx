@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { useMarketsFetch, useMarketsTickersFetch, useRangerConnectFetch } from '../../hooks';
 import { selectCurrencies, selectMarkets, selectMarketTickers } from '../../modules';
@@ -49,16 +49,6 @@ const Section = styled.div`
     padding: 50px 0;
 `;
 
-const MarketChartItem = styled.div`
-    cursor: pointer;
-    padding: 1rem;
-    border-radius: 5px;
-    transition: ease-in-out 0.3s;
-    :hover {
-        background-color: #4C4F62;
-    }
-`;
-
 const defaultTicker = {
     amount: '0.0',
     last: '0.0',
@@ -80,10 +70,10 @@ export const HomePageScreen = () => {
     const [KlineState1, setKline1State] = React.useState<{ pv: string }>();
     const [KlineState2, setKline2State] = React.useState<{ pv: string }>();
     const [KlineState3, setKline3State] = React.useState<{ pv: string }>();
-    /*     const [KlineState4, setKline4State] = React.useState<{ pv: string }>();
-        const [KlineState5, setKline5State] = React.useState<{ pv: string }>();
-        const [KlineState6, setKline6State] = React.useState<{ pv: string }>();
-        const [KlineState7, setKline7State] = React.useState<{ pv: string }>(); */
+/*     const [KlineState4, setKline4State] = React.useState<{ pv: string }>();
+    const [KlineState5, setKline5State] = React.useState<{ pv: string }>();
+    const [KlineState6, setKline6State] = React.useState<{ pv: string }>();
+    const [KlineState7, setKline7State] = React.useState<{ pv: string }>(); */
 
     useMarketsFetch();
     useMarketsTickersFetch();
@@ -111,17 +101,17 @@ export const HomePageScreen = () => {
                 const klines1 = await fetchMarketsKlines(market_ids[0], from, to);
                 const klines2 = await fetchMarketsKlines(market_ids[1], from, to);
                 const klines3 = await fetchMarketsKlines(market_ids[2], from, to);
-                /*                 const klines4 = await fetchMarketsKlines(market_ids[3], from, to);
-                                const klines5 = await fetchMarketsKlines(market_ids[4], from, to);
-                                const klines6 = await fetchMarketsKlines(market_ids[5], from, to);
-                                const klines7 = await fetchMarketsKlines(market_ids[6], from, to); */
+/*                 const klines4 = await fetchMarketsKlines(market_ids[3], from, to);
+                const klines5 = await fetchMarketsKlines(market_ids[4], from, to);
+                const klines6 = await fetchMarketsKlines(market_ids[5], from, to);
+                const klines7 = await fetchMarketsKlines(market_ids[6], from, to); */
                 setKline1State(klines1);
                 setKline2State(klines2);
                 setKline3State(klines3);
-                /*                 setKline4State(klines4);
-                                setKline5State(klines5);
-                                setKline6State(klines6);
-                                setKline7State(klines7); */
+/*                 setKline4State(klines4);
+                setKline5State(klines5);
+                setKline6State(klines6);
+                setKline7State(klines7); */
             } catch (error) {
                 console.log(JSON.stringify(error));
 
@@ -151,7 +141,7 @@ export const HomePageScreen = () => {
     );
 
     const findIcon = (code: string): string => {
-        const currency = currencies.find((currency: any) => String(currency.id).toLowerCase() === code.toLowerCase());
+        const currency = currencies.find((currency: any) => currency.id === code);
         try {
             return require(`../../../node_modules/cryptocurrency-icons/128/color/${code.toLowerCase()}.png`);
         } catch (err) {
@@ -159,17 +149,14 @@ export const HomePageScreen = () => {
             return require('../../../node_modules/cryptocurrency-icons/svg/color/generic.svg');
         }
     };
-    
-    const history = useHistory();
+
 
     const renderMarket = () => {
         const MarketChart = (data: any, marketID: string) => {
             const market = markets.find(market => market.base_unit.toLowerCase() === marketID.split('/')[0].toLowerCase());
 
             if (market) {
-                const marketID = market.name.toUpperCase();
-                const baseCurrency = marketID.split('/')[0];
-                const quoteCurrency = marketID.split('/')[1];
+                const baseCurrency = market.name.split('/')[0];
                 const last = Number((marketTickers[market.id] || defaultTicker).last);
                 const open = Number((marketTickers[market.id] || defaultTicker).open);
                 const price_change_percent = (marketTickers[market.id] || defaultTicker).price_change_percent;
@@ -177,36 +164,35 @@ export const HomePageScreen = () => {
                 // color
                 const marketChangeColor = +(change || 0) < 0 ? "#91121D" : "#88A190ff";
                 return (
-                    <MarketChartItem>
-                        <div className="container" onClick={() => history.push(`/trading/${baseCurrency.toLowerCase() + quoteCurrency.toLowerCase()}`)}>
-                            <div className="row">
-                                <div className="col-12 d-flex justify-content-between">
-                                    <div>
-                                        <img width="30px" height="30px" src={findIcon(baseCurrency)} alt={baseCurrency} />
-                                        <span style={{ fontSize: '1.2rem', fontWeight: 'bold', margin: '5px' }} className="text-white">{marketID.toUpperCase()}</span>
-                                    </div>
-                                    <span style={{ color: '#fff', padding: '0.5rem 1rem', backgroundColor: '#414455ff', borderRadius: '1rem', fontWeight: 'bold' }}>24H</span>
+
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12 d-flex justify-content-between">
+                                <div>
+                                    <img width="30px" height="30px" src={findIcon(baseCurrency)} alt="" />
+                                    <span style={{ fontSize: '1.2rem', fontWeight: 'bold', margin: '5px' }} className="text-white">{baseCurrency.toUpperCase()}</span>
                                 </div>
-                            </div>
-                            <div className="row mt-3">
-                                <div className="col-6 d-flex justify-content-start align-items-center">
-                                    <span style={{ marginLeft: '5px', fontSize: '2rem', color: '#fff', fontWeight: 'bold' }}>{last.toFixed(6)} {quoteCurrency}</span>
-                                </div>
-                                <div className="col-6 d-flex justify-content-end align-items-center">
-                                    <span style={{ marginRight: '5px', color: marketChangeColor, fontWeight: 'bold' }}>{price_change_percent}</span>
-                                </div>
-                            </div>
-                            <div className="row mt-5">
-                                <div className="col-12" >
-                                    <ResponsiveContainer width='100%' aspect={4.0 / 1.0}>
-                                        <AreaChart data={data}>
-                                            <Area type="monotone" dataKey="pv" stroke="#fff" fill="transparent" strokeWidth={2} />
-                                        </AreaChart>
-                                    </ResponsiveContainer>
-                                </div>
+                                <span style={{ color: '#fff', padding: '0.5rem 1rem', backgroundColor: '#414455ff', borderRadius: '1rem', fontWeight: 'bold' }}>24H</span>
                             </div>
                         </div>
-                    </MarketChartItem>
+                        <div className="row mt-3">
+                            <div className="col-6 d-flex justify-content-start align-items-center">
+                                <span style={{ marginLeft: '5px', fontSize: '2rem', color: '#fff', fontWeight: 'bold' }}>${last.toFixed(4)}</span>
+                            </div>
+                            <div className="col-6 d-flex justify-content-end align-items-center">
+                                <span style={{ marginRight: '5px', color: marketChangeColor, fontWeight: 'bold' }}>{price_change_percent}</span>
+                            </div>
+                        </div>
+                        <div className="row mt-5">
+                            <div className="col-12" >
+                                <ResponsiveContainer width='100%' aspect={4.0 / 1.0}>
+                                    <AreaChart data={data}>
+                                        <Area type="monotone" dataKey="pv" stroke="#fff" fill="transparent" strokeWidth={2} />
+                                    </AreaChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
+                    </div>
 
                 );
             }
