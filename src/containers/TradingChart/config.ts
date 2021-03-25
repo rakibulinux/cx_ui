@@ -23,7 +23,7 @@ export const widgetOptions = (colorTheme?: string) => {
         enable_publishing: false,
         enabled_features: ['show_animated_logo'],
         fullscreen: false,
-        height: 650,
+        height: 1000s,
         hide_side_toolbar: false,
         hotlist: true,
         library_path: '/charting_library/',
@@ -31,7 +31,7 @@ export const widgetOptions = (colorTheme?: string) => {
         popup_width: '000',
         show_popup_button: true,
         studies_overrides: {},
-        timeframe: '2D',
+        timeframe: '5D',
         user_id: 'public_user_id',
         withdateranges: false,
 

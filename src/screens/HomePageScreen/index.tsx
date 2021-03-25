@@ -64,7 +64,7 @@ const BASE_MARKET_URL = "https://www.lukutex.com/api/v2/peatio/public/markets";
 export const HomePageScreen = () => {
 
     const market_ids = [
-        'btc/usdt', 'eth/usdt', 'btc/usdt', 'eth/usdt', 'btc/usdt', 'eth/usdt', 'btc/usdt'
+        'cx/usdt', 'cx/eth', 'eth/usdt'
     ]
 
     const [KlineState1, setKline1State] = React.useState<{ pv: string }>();
@@ -139,31 +139,6 @@ export const HomePageScreen = () => {
             </div>
         </Section>
     );
-
-    // const renderInverstIn = () => {
-    //     return (
-    //         <Section>
-    //             <div className="container">
-    //                 <div className="row">
-    //                     <div className="col-6">
-    //                         <div className="row" style={{ marginTop: '80px' }}>
-    //                             <div className="col-12">
-    //                                 <Title>Invest in the hottest coins</Title>
-    //                                 <SubTitle>
-    //                                     We have all of the most popular cryptos <br /> available to buy so you never have to suffer from <br /> investment FOMO ever again.
-    //                                 </SubTitle>
-    //                             </div>
-    //                         </div>
-    //                     </div>
-    //                     <div className="col-6">
-    //                         <img className="img-fluid" src={CoinBubblesSvg} alt="coin_bubble_svg" />
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </Section>
-
-    //     );
-    // }
 
     const findIcon = (code: string): string => {
         const currency = currencies.find((currency: any) => currency.id === code);
