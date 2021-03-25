@@ -70,10 +70,10 @@ export const HomePageScreen = () => {
     const [KlineState1, setKline1State] = React.useState<{ pv: string }>();
     const [KlineState2, setKline2State] = React.useState<{ pv: string }>();
     const [KlineState3, setKline3State] = React.useState<{ pv: string }>();
-    const [KlineState4, setKline4State] = React.useState<{ pv: string }>();
+/*     const [KlineState4, setKline4State] = React.useState<{ pv: string }>();
     const [KlineState5, setKline5State] = React.useState<{ pv: string }>();
     const [KlineState6, setKline6State] = React.useState<{ pv: string }>();
-    const [KlineState7, setKline7State] = React.useState<{ pv: string }>();
+    const [KlineState7, setKline7State] = React.useState<{ pv: string }>(); */
 
     useMarketsFetch();
     useMarketsTickersFetch();
@@ -101,17 +101,17 @@ export const HomePageScreen = () => {
                 const klines1 = await fetchMarketsKlines(market_ids[0], from, to);
                 const klines2 = await fetchMarketsKlines(market_ids[1], from, to);
                 const klines3 = await fetchMarketsKlines(market_ids[2], from, to);
-                const klines4 = await fetchMarketsKlines(market_ids[3], from, to);
+/*                 const klines4 = await fetchMarketsKlines(market_ids[3], from, to);
                 const klines5 = await fetchMarketsKlines(market_ids[4], from, to);
                 const klines6 = await fetchMarketsKlines(market_ids[5], from, to);
-                const klines7 = await fetchMarketsKlines(market_ids[6], from, to);
+                const klines7 = await fetchMarketsKlines(market_ids[6], from, to); */
                 setKline1State(klines1);
                 setKline2State(klines2);
                 setKline3State(klines3);
-                setKline4State(klines4);
+/*                 setKline4State(klines4);
                 setKline5State(klines5);
                 setKline6State(klines6);
-                setKline7State(klines7);
+                setKline7State(klines7); */
             } catch (error) {
                 console.log(JSON.stringify(error));
 
@@ -214,11 +214,14 @@ export const HomePageScreen = () => {
                             {MarketChart(KlineState3, market_ids[2])}
                         </div>
 
-                        <div className="col-3">
+                        {/* <div className="col-3">
                             {MarketChart(KlineState4, market_ids[3])}
+                        </div> */}
+                        <div className="col-3 d-flex justify-content-center align-items-center">
+                            <button className="btn" style={{ color: '#3D8189ff', backgroundColor: '#2E4152ff', padding: '0.5rem 1rem' }}><Link to="/signup">View all</Link></button>
                         </div>
                     </div>
-                    <div className="row mt-5">
+                    {/* <div className="row mt-5">
                         <div className="col-3">
                             {MarketChart(KlineState5, market_ids[4])}
                         </div>
@@ -232,7 +235,7 @@ export const HomePageScreen = () => {
                         <div className="col-3 d-flex justify-content-center align-items-center">
                             <button className="btn" style={{ color: '#3D8189ff', backgroundColor: '#2E4152ff', padding: '0.5rem 1rem' }}><Link to="/signup">View all</Link></button>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </Section>
 
