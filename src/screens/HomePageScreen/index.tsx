@@ -59,7 +59,7 @@ const defaultTicker = {
     volume: '0.0',
 };
 
-const BASE_MARKET_URL = "https://www.lukutex.com/api/v2/peatio/public/markets";
+const BASE_MARKET_URL = "https://www.cx.finance/api/v2/peatio/public/markets";
 
 export const HomePageScreen = () => {
 
