@@ -323,28 +323,6 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
     ];
   }
 
-  /* private getIsLimitWithdraw24H = () => {
-    const { historyList, wallets } = this.props;
-    const { selectedWalletIndex } = this.state;
-    const selectedCurrency = (wallets[selectedWalletIndex] || { currency: '' }).currency;
-    const selectedCurrencyHistories = historyList
-      .filter((history: any) => history.currency === selectedCurrency.toLowerCase());
-    const maxIdHistory = selectedCurrencyHistories.length > 0 ?
-      selectedCurrencyHistories
-        .reduce(function (prev, current) {
-          return (prev.id > current.id) ? prev : current
-        }) : undefined;
-
-    const now = new Date().getTime();
-    const lastWithdrawTime = maxIdHistory ? new Date(maxIdHistory.created_at).getTime() : undefined;
-    let isLimitWithdraw24H = false;
-
-    if (lastWithdrawTime) {
-      const distance = (now - lastWithdrawTime) / 1000 / 3600;
-      isLimitWithdraw24H = distance > 24 ? false : true;
-    }
-    return isLimitWithdraw24H;
-  } */
 
   private handleWithdraw = () => {
     const { selectedWalletIndex, otpCode, amount, beneficiary } = this.state;
@@ -359,25 +337,13 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
     const ethWallet = wallets.find(wallet => wallet.currency.toLowerCase() === 'eth');
     const ethBallance = ethWallet ? ethWallet.balance : undefined;
 
-    /* const isLimitWithdraw24H = this.getIsLimitWithdraw24H();
-    if (isLimitWithdraw24H) {
-      message.error('Limit withdraw 24h.');
-      return;
-    } */
-
-    if (fee == 0 && ethBallance && eth_fee[0].fee && Number(ethBallance) >= Number(eth_fee[0].fee)) {
-      const withdrawByEthFeeData = {
-        uid: user.uid,
-        currency: currency.toLowerCase(),
-        amount: amount
-      }
-      this.props.withdrawByEthFee(withdrawByEthFeeData);
-    } else {
+    if (!(fee == 0 && ethBallance && eth_fee[0].fee && Number(ethBallance) >= Number(eth_fee[0].fee))) {
       message.error('Withdraw failed.');
       return;
-    }
+    } 
 
     const withdrawRequest = {
+      uid: user.uid,
       amount,
       currency: currency.toLowerCase(),
       otp: otpCode,
@@ -522,9 +488,6 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
     const minWithdrawAmount = (selectedCurrency && selectedCurrency.min_withdraw_amount) ? selectedCurrency.min_withdraw_amount : undefined;
     const limitWitdraw24h = (selectedCurrency && selectedCurrency.withdraw_limit_24h) ? selectedCurrency.withdraw_limit_24h : undefined;
 
-    /* const isLimitWithdraw24H = this.getIsLimitWithdraw24H(); */
-
-
     const withdrawProps: WithdrawProps = {
       withdrawDone,
       currency,
@@ -542,7 +505,6 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
       ethBallance,
       minWithdrawAmount,
       limitWitdraw24h,
-      /* isLimitWithdraw24H */
     };
 
     return otp ? <Withdraw {...withdrawProps} /> : this.isOtpDisabled();

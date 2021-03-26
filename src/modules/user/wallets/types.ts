@@ -18,6 +18,7 @@ export interface WalletAddress {
 }
 
 export interface WalletWithdrawCCY {
+    uid: string;
     amount: string;
     currency: string;
     otp: string;
