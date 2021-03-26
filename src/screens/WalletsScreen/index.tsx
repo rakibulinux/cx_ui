@@ -382,7 +382,7 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
 
     const textDepositFee = `${this.translate('page.body.wallets.tabs.deposit.ccy.message.depositfee')} ${Number(currencyItem.deposit_fee)} ${currency.toUpperCase()}`;
 
-    const checkDepositFee = Number(currencyItem.deposit_fee) != 0 ? textDepositFee : `${this.translate('page.body.wallets.tabs.deposit.ccy.message.depositfee')} 1 %`;
+    const checkDepositFee = Number(currencyItem.deposit_fee) != 0 ? textDepositFee : `${this.translate('page.body.wallets.tabs.deposit.ccy.message.depositfee')} 0`;
 
     const textNote = `Only Deposit ${currency.toUpperCase()} to this wallet.`
 
