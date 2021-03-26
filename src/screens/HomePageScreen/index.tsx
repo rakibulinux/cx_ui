@@ -76,7 +76,7 @@ export const HomePageScreen = () => {
     const history = useHistory();
 
     const market_ids = [
-        'cx/usdt', 'cx/eth', 'eth/btc'
+        'cx/usdt', 'cx/eth', 'eth/usdt'
     ]
 
     const [KlineState1, setKline1State] = React.useState<{ pv: string }>();
