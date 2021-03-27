@@ -172,8 +172,8 @@ export const HomePageScreen = () => {
     
     const renderMarket = () => {
         const MarketChart = (data: any, marketID: string) => {
-            const market = markets.find(market => market.id.toLowerCase() === marketID.split('/').join().toLowerCase());
-
+            const market = markets.find(market => market.id.toLowerCase() === marketID.split('/').join('').toLowerCase());
+            
             if (market) {
                 const marketID = market.name.toUpperCase();
                 const baseCurrency = marketID.split('/')[0];
@@ -198,7 +198,7 @@ export const HomePageScreen = () => {
                             </div>
                             <div className="row mt-3">
                                 <div className="col-6 d-flex justify-content-start align-items-center">
-                                    <span style={{ marginLeft: '5px', fontSize: '2rem', color: '#fff', fontWeight: 'bold' }}>{last.toFixed(6)} {quoteCurrency}</span>
+                                    <span style={{ marginLeft: '5px', fontSize: '2rem', color: '#fff', fontWeight: 'bold' }}>{last.toFixed(6)} <br/> {quoteCurrency}</span>
                                 </div>
                                 <div className="col-6 d-flex justify-content-end align-items-center">
                                     <span style={{ marginRight: '5px', color: marketChangeColor, fontWeight: 'bold' }}>{price_change_percent}</span>
