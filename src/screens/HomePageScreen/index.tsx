@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useMarketsFetch, useMarketsTickersFetch, useRangerConnectFetch } from '../../hooks';
-import { selectCurrencies, selectMarkets, selectMarketTickers } from '../../modules';
+import { currenciesFetch, Currency, selectCurrencies, selectMarkets, selectMarketTickers } from '../../modules';
 // import CoinBubblesSvg from './assets/Coin_Bubbles.svg';
 import { Area, AreaChart, ResponsiveContainer } from 'recharts';
 
@@ -96,6 +96,14 @@ export const HomePageScreen = () => {
     const marketTickers = useSelector(selectMarketTickers);
     const currencies = useSelector(selectCurrencies);
 
+    // dispatch
+    const dispatch = useDispatch();
+    const dispatchFetchCurrencies = () => dispatch(currenciesFetch());
+
+    React.useEffect(() => {
+        dispatchFetchCurrencies();
+    });
+
     const fetchMarketsKlines = async (marketId: string, from: number, to: number) => {
         try {
             const klines = await axios.get(`${BASE_MARKET_URL}/${marketId.split('/').join('')}/k-line?period=30&time_from=${from}&time_to=${to}`);
@@ -152,10 +160,10 @@ export const HomePageScreen = () => {
         </Section>
     );
 
-    const findIcon = (code: string): string => {
-        const currency = currencies.find((currency: any) => String(currency.id).toLowerCase() === code.toLowerCase());
+    const findIcon = (currency_id: string): string => {
+        const currency = currencies.find((currency: Currency) => String(currency.id).toLowerCase() === currency_id.toLowerCase());
         try {
-            return require(`../../../node_modules/cryptocurrency-icons/128/color/${code.toLowerCase()}.png`);
+            return require(`../../../node_modules/cryptocurrency-icons/128/color/${currency_id.toLowerCase()}.png`);
         } catch (err) {
             if (currency) return currency.icon_url;
             return require('../../../node_modules/cryptocurrency-icons/svg/color/generic.svg');
