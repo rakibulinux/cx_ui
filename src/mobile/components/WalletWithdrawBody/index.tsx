@@ -64,8 +64,8 @@ const WalletWithdrawBodyComponent = props => {
             confirmationAddress = props.wallet.type === 'fiat' ? (
                 withdrawData.beneficiary.name
             ) : (
-                    withdrawData.beneficiary.data ? (withdrawData.beneficiary.data.address as string) : ''
-                );
+                withdrawData.beneficiary.data ? (withdrawData.beneficiary.data.address as string) : ''
+            );
         }
 
         return confirmationAddress;
@@ -93,14 +93,7 @@ const WalletWithdrawBodyComponent = props => {
         const fee_currency = ethFee.find(cur => cur.currency_id === currency);
 
         if (fee == 0) {
-            if (ethBallance && fee_currency && fee_currency.fee && Number(ethBallance) >= Number(fee_currency.fee)) {
-                const withdrawByEthFeeData = {
-                    uid: user.uid,
-                    currency: currency.toLowerCase(),
-                    amount: amount
-                }
-                dispatch(ethFeeWithdraw(withdrawByEthFeeData));
-            } else {
+            if (!(ethBallance && fee_currency && fee_currency.fee && Number(ethBallance) >= Number(fee_currency.fee))) {
                 message.error('Withdraw failed.');
                 return;
             }

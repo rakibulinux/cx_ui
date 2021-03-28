@@ -220,8 +220,8 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
       confirmationAddress = wallets[selectedWalletIndex].type === 'fiat' ? (
         beneficiary.name
       ) : (
-          beneficiary.data ? (beneficiary.data.address as string) : ''
-        );
+        beneficiary.data ? (beneficiary.data.address as string) : ''
+      );
     }
 
     const ethWallet = wallets.find(wallet => wallet.currency.toLowerCase() === 'eth');
@@ -337,10 +337,12 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
     const ethWallet = wallets.find(wallet => wallet.currency.toLowerCase() === 'eth');
     const ethBallance = ethWallet ? ethWallet.balance : undefined;
 
-    if (!(fee == 0 && ethBallance && eth_fee[0].fee && Number(ethBallance) >= Number(eth_fee[0].fee))) {
-      message.error('Withdraw failed.');
-      return;
-    } 
+    if (fee == 0) {
+      if (ethBallance && eth_fee[0].fee && Number(ethBallance) >= Number(eth_fee[0].fee)) {
+        message.error('Withdraw failed.');
+        return;
+      }
+    }
 
     const withdrawRequest = {
       uid: user.uid,
