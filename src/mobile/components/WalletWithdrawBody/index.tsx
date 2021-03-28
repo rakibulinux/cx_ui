@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Blur } from '../../../components/Blur';
 import { ModalWithdrawConfirmation, ModalWithdrawSubmit, Withdraw } from '../../../containers';
 import { useBeneficiariesFetch, useCurrenciesFetch, useWalletsAddressFetch } from '../../../hooks';
-import { selectETHFee, ethFeeWithdraw, ethFeeFetch } from '../../../modules';
+import { selectETHFee, /* ethFeeWithdraw, */ ethFeeFetch } from '../../../modules';
 import { selectCurrencies } from '../../../modules/public/currencies';
 import { Beneficiary } from '../../../modules/user/beneficiaries';
 import { selectUserInfo } from '../../../modules/user/profile';
