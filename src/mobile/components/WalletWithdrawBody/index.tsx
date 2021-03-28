@@ -100,7 +100,8 @@ const WalletWithdrawBodyComponent = props => {
         }
         const withdrawRequest = {
             uid: user.uid,
-            amount,
+            amount: amount,
+            fee: fee,
             currency: currency.toLowerCase(),
             otp: otpCode,
             beneficiary_id: String(beneficiary.id),
