@@ -26,298 +26,84 @@ const prizeList: Prizes[] = [
         prizes: [
             {
                 rank: '1',
-                award: '1,000,000 SWP and 150 USDT'
+                award: '150,000 CX'
             },
             {
                 rank: '2',
-                award: '500,000 SWP and 50 USDT'
+                award: '100,000 CX'
             },
             {
                 rank: '3',
-                award: '200,000 SWP'
+                award: '40,000 CX'
             },
             {
                 rank: '4',
-                award: '70,000 SWP'
+                award: '20,000 CX'
             },
             {
                 rank: '5',
-                award: '50,000 SWP'
+                award: '20,000 CX'
             },
             {
                 rank: '6',
-                award: '30,000 SWP'
+                award: '20,000 CX'
             },
             {
                 rank: '7',
-                award: '25,000 SWP'
+                award: '20,000 CX'
             },
             {
                 rank: '8',
-                award: '25,000 SWP'
+                award: '20,000 CX'
             },
             {
                 rank: '9',
-                award: '25,000 SWP'
+                award: '20,000 CX'
             },
             {
                 rank: '10',
-                award: '25,000 SWP'
+                award: '20,000 CX'
             },
             {
                 rank: '11',
-                award: '25,000 SWP'
+                award: '10,000 CX'
             },
             {
                 rank: '12',
-                award: '25,000 SWP'
-            }
-        ]
-    },
-
-    {
-        competition_id: 2,
-        prizes: [
-            {
-                rank: '1',
-                award: '4000 EOC and 150 USDT'
-            },
-            {
-                rank: '2',
-                award: '2000 EOC and 50 USDT'
-            },
-            {
-                rank: '3',
-                award: '1000 EOC'
-            },
-            {
-                rank: '4',
-                award: '500 EOC'
-            },
-            {
-                rank: '5',
-                award: '500 EOC'
-            },
-            {
-                rank: '6',
-                award: '500 EOC'
-            },
-            {
-                rank: '7',
-                award: '500 EOC'
-            },
-            {
-                rank: '8',
-                award: '500 EOC'
-            },
-            {
-                rank: '9',
-                award: '500 EOC'
-            },
-            {
-                rank: '10',
-                award: '500 EOC'
-            },
-        ]
-    },
-
-    {
-        competition_id: 3,
-        prizes: [
-            {
-                rank: '1',
-                award: '20,000 DOGY'
-            },
-            {
-                rank: '2',
-                award: '10,000 DOGY'
-            },
-            {
-                rank: '3',
-                award: '5,000 DOGY'
-            },
-            {
-                rank: '4',
-                award: '3,000 DOGY'
-            },
-            {
-                rank: '5',
-                award: '3,000 DOGY'
-            },
-            {
-                rank: '6',
-                award: '3,000 DOGY'
-            },
-            {
-                rank: '7',
-                award: '3,000 DOGY'
-            },
-            {
-                rank: '8',
-                award: '3,000 DOGY'
-            }
-        ]
-    },
-
-    {
-        competition_id: 4,
-        prizes: [
-            {
-                rank: '1',
-                award: '40,000 GHD'
-            },
-            {
-                rank: '2',
-                award: '30,000 GHD'
-            },
-            {
-                rank: '3',
-                award: '25,000 GHD'
-            },
-            {
-                rank: '4',
-                award: '10,000 GHD'
-            },
-            {
-                rank: '5',
-                award: '8,000 GHD'
-            },
-            {
-                rank: '6',
-                award: '7,000 GHD'
-            },
-            {
-                rank: '7',
-                award: '5,000 GHD'
-            },
-            {
-                rank: '8',
-                award: '5,000 GHD'
-            },
-            {
-                rank: '9',
-                award: '5,000 GHD'
-            },
-            {
-                rank: '10',
-                award: '5,000 GHD'
-            },
-            {
-                rank: '11',
-                award: '1,500 GHD'
-            },
-            {
-                rank: '12',
-                award: '1,500 GHD'
+                award: '10,000 CX'
             },
             {
                 rank: '13',
-                award: '1,500 GHD'
+                award: '10,000 CX'
             },
             {
                 rank: '14',
-                award: '1,500 GHD'
+                award: '10,000 CX'
             },
             {
                 rank: '15',
-                award: '1,500 GHD'
+                award: '10,000 CX'
             },
             {
                 rank: '16',
-                award: '1,500 GHD'
+                award: '10,000 CX'
             },
             {
                 rank: '17',
-                award: '1,500 GHD'
+                award: '10,000 CX'
             },
             {
                 rank: '18',
-                award: '1,500 GHD'
+                award: '10,000 CX'
             },
             {
                 rank: '19',
-                award: '1,500 GHD'
+                award: '10,000 CX'
             },
             {
                 rank: '20',
-                award: '1,500 GHD'
+                award: '10,000 CX'
             }
-        ]
-    },
-
-    {
-        competition_id: 5,
-        prizes: [
-            {
-                rank: '1',
-                award: '20,000 TDI'
-            },
-            {
-                rank: '2',
-                award: '7,500 TDI'
-            },
-            {
-                rank: '3',
-                award: '5,000 TDI'
-            },
-            {
-                rank: '4',
-                award: '2,500 TDI'
-            },
-            {
-                rank: '5',
-                award: '1,500 TDI'
-            },
-            {
-                rank: '6',
-                award: '1,000 TDI'
-            },
-        ]
-    },
-
-    {
-        competition_id: 6,
-        prizes: [
-            {
-                rank: '1',
-                award: '200 USDT'
-            },
-            {
-                rank: '2',
-                award: '75 USDT'
-            },
-            {
-                rank: '3',
-                award: '50 USDT'
-            },
-            {
-                rank: '4',
-                award: '25 USDT'
-            },
-            {
-                rank: '5',
-                award: '25 USDT'
-            },
-            {
-                rank: '6',
-                award: '25 USDT'
-            },
-            {
-                rank: '7',
-                award: '25 USDT'
-            },
-            {
-                rank: '8',
-                award: '25 USDT'
-            },
-            {
-                rank: '9',
-                award: '25 USDT'
-            },
-            {
-                rank: '10',
-                award: '25 USDT'
-            },
         ]
     },
 ]
