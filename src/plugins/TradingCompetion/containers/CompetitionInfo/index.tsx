@@ -86,7 +86,7 @@ export const CompetitionInfo: React.FC<CompetitionInfoProps> = (props: Competiti
                 <React.Fragment>
                     <div className="row mt-3">
                         <div className="col-xl-4 col-md-6 mt-3">
-                            <Statistic title="Your Trade Volumn" value={volumn.toFixed(3)} />
+                            <Statistic title="Your Trade Volume" value={volumn.toFixed(3)} />
                             <div className="mt-3">
                                 <h3 className="ant-statistic-title">Next rank update</h3>
                                 <Countdown date={new Date(next_update)} renderer={renderer} />

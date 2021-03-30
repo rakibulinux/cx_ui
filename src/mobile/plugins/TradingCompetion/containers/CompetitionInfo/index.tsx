@@ -87,7 +87,7 @@ export const CompetitionInfo: React.FC<CompetitionInfoProps> = (props: Competiti
                   
                     <div className="row">
                         <div className="col-6">
-                            <Statistic title="Your Trade Volumn" value={volumn.toFixed(0)} />
+                            <Statistic title="Your Trade Volume" value={volumn.toFixed(0)} />
 
                         </div>
                         <div className="col-6">
