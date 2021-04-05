@@ -337,17 +337,23 @@ class WalletsComponent extends React.Component<Props, WalletsState> {
     const ethWallet = wallets.find(wallet => wallet.currency.toLowerCase() === 'eth');
     const ethBallance = ethWallet ? ethWallet.balance : undefined;
 
+    const fee_currency = eth_fee.find(cur => cur.currency_id === currency);
+
     if (fee == 0) {
-      if (ethBallance && eth_fee[0].fee && Number(ethBallance) >= Number(eth_fee[0].fee)) {
-        message.error('Withdraw failed.');
+      if (!(fee_currency && fee_currency.fee)) {
+        message.error('Something wrong with ETH fee.');
+        return;
+      }
+      if (!(ethBallance && Number(ethBallance) >= Number(fee_currency.fee))) {
+        message.error('ETH balance isn`\t enough to pay.');
         return;
       }
     }
 
     const withdrawRequest = {
       uid: user.uid,
-      amount: amount,
-      fee: fee,
+      fee: fee.toString(),
+      amount,
       currency: currency.toLowerCase(),
       otp: otpCode,
       beneficiary_id: String(beneficiary.id),
