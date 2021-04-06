@@ -15,6 +15,10 @@ import GooglePlay from './assets/google_play_download.png';
 import AndroidAPK from './assets/android_apk_download.png';
 import Scan from './assets/scan_download.png';
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
 import Exchange from './assets/mobile.png';
 
 import axios from 'axios';
@@ -56,6 +60,16 @@ const MarketChartItem = styled.div`
     transition: ease-in-out 0.3s;
     :hover {
         background-color: #4C4F62;
+    }
+`;
+
+const ReactSlickStyle = styled.div`
+    .slick-slide {
+    padding-left: 20px;
+}
+
+    .slick-list [data-slick-index="0"] {
+        padding-left: 0;
     }
 `;
 
@@ -331,6 +345,118 @@ export const HomePageScreen = () => {
         );
     }
 
+    const renderTeam = () => {
+        const images = [
+            {
+                large: 'https://fakeimg.pl/400x600/?text=1&font=GoogleSans',
+                medium: 'https://fakeimg.pl/200x300/?text=1&font=GoogleSans'
+            },
+            {
+                large: 'https://fakeimg.pl/400x600/?text=2&font=GoogleSans',
+                medium: 'https://fakeimg.pl/200x300/?text=2&font=GoogleSans'
+            },
+            {
+                large: 'https://fakeimg.pl/400x600/?text=3&font=GoogleSans',
+                medium: 'https://fakeimg.pl/200x300/?text=3&font=GoogleSans'
+            },
+            {
+                large: 'https://fakeimg.pl/400x600/?text=4&font=GoogleSans',
+                medium: 'https://fakeimg.pl/200x300/?text=4&font=GoogleSans'
+            }
+        ];
+        var settings = {
+            arrows: false,
+            dots: false,
+            infinite: false,
+            speed: 500,
+            slidesToShow: 3,
+            slidesToScroll: 1
+        };
+        return (
+            <div className="container" style={{ padding: '50px 0' }}>
+                <div className="row">
+                    <div className="col-4">
+                        <img style={{ borderRadius: '5px', width: '100%' }} src={images[0].large} alt="" />
+                        <div className="mt-3 d-flex flex-row justify-content-between">
+                            <button
+                                style={{
+                                    width: '60px',
+                                    height: '60px',
+                                    borderRadius: '6px',
+                                    fontSize: '2rem',
+                                    backgroundColor: '#5DD1E1ff',
+                                    border: 'none',
+                                    outline: 'none',
+                                    color: '#fff'
+                                }}
+                            >
+                                {'<'}
+                            </button>
+                            <div style={{ position: 'relative', width: '150px' }}>
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+                                    width: '100%', border: '1px solid #686A75ff'
+                                }}></div>
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '50%', left: '0', transform: 'translateY(-50%)',
+                                    width: '10%', border: '1px solid #7BA6B0ff'
+                                }}></div>
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '25%', left: '-5%', transform: 'translateY(-50%)',
+                                    width: '110%', display: 'flex', flexDirection: 'row',
+                                    justifyContent: 'space-between'
+                                }}>
+                                    <span>01</span>
+                                    <span>12</span>
+                                </div>
+
+                            </div>
+                            <button
+                                style={{
+                                    width: '60px',
+                                    height: '60px',
+                                    borderRadius: '6px',
+                                    fontSize: '2rem',
+                                    backgroundColor: '#5DD1E1ff',
+                                    border: 'none',
+                                    outline: 'none',
+                                    color: '#fff'
+                                }}
+                            >
+                                {'>'}
+                            </button>
+                        </div>
+                    </div>
+                    <div className="col-8" style={{ paddingLeft: '50px' }}>
+                        <div>
+                            <h1>Our Team</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, at? Odit recusandae, hic ratione optio atque magni laudantium dolor sint repellendus deleniti, aperiam similique ad, incidunt molestiae? Esse, quaerat officia.</p>
+                        </div>
+                        <hr style={{ marginLeft: 0,  width: '120px', height: '3px', backgroundColor: '#5DD1E1ff' }} />
+                        <div>
+                            <h2>Huynh Van Phuoc</h2>
+                            <span>Software Developer</span>
+                        </div>
+                        <div style={{ marginTop: '40px' }}>
+                            <ReactSlickStyle>
+                                <Slider {...settings}>
+                                    <img src={images[0].medium} alt="" />
+                                    <img src={images[1].medium} alt="" />
+                                    <img src={images[2].medium} alt="" />
+                                    <img src={images[3].medium} alt="" />
+                                </Slider>
+                            </ReactSlickStyle>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        );
+    }
+
     return (
         <div>
             {renderTitle()}
@@ -338,6 +464,7 @@ export const HomePageScreen = () => {
             {/* {renderInverstIn()} */}
             {renderSupport()}
             {renderPoster()}
+            {renderTeam()}
         </div>
     )
 }

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
+    "@brainhubeu/react-carousel": "^1.19.26",
     "@formatjs/intl-pluralrules": "^3.2.5",
     "@formatjs/intl-relativetimeformat": "^7.0.0",
     "@openware/cryptofont": "2.3.0",
