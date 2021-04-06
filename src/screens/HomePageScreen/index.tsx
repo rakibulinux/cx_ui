@@ -14,6 +14,7 @@ import AppStore from './assets/app_store_download.png';
 import GooglePlay from './assets/google_play_download.png';
 import AndroidAPK from './assets/android_apk_download.png';
 import Scan from './assets/scan_download.png';
+import LinkedinSVG from './assets/svg/linkedin.svg';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -348,23 +349,29 @@ export const HomePageScreen = () => {
     }
 
     const renderTeam = () => {
-        const images = [
+        const teams = [
             {
                 large: 'https://fakeimg.pl/400x600/?text=1&font=GoogleSans',
-                medium: 'https://fakeimg.pl/200x300/?text=1&font=GoogleSans'
+                medium: 'https://fakeimg.pl/200x300/?text=1&font=GoogleSans',
+                name: 'Huynh Van Phuoc',
+                roll: 'Reactjs Developer',
+                linkedin: 'https://www.linkedin.com'
             },
             {
                 large: 'https://fakeimg.pl/400x600/?text=2&font=GoogleSans',
-                medium: 'https://fakeimg.pl/200x300/?text=2&font=GoogleSans'
+                medium: 'https://fakeimg.pl/200x300/?text=2&font=GoogleSans',
+                name: 'Le Thanh Dat',
+                roll: 'Reactjs Developer',
+                linkedin: 'https://www.linkedin.com'
             },
             {
                 large: 'https://fakeimg.pl/400x600/?text=3&font=GoogleSans',
-                medium: 'https://fakeimg.pl/200x300/?text=3&font=GoogleSans'
+                medium: 'https://fakeimg.pl/200x300/?text=3&font=GoogleSans',
+                name: 'Ngo Nhat Duy',
+                roll: 'Reactjs Developer',
+                linkedin: 'https://www.linkedin.com'
             },
-            {
-                large: 'https://fakeimg.pl/400x600/?text=4&font=GoogleSans',
-                medium: 'https://fakeimg.pl/200x300/?text=4&font=GoogleSans'
-            }
+
         ];
         var settings = {
             arrows: false,
@@ -378,13 +385,13 @@ export const HomePageScreen = () => {
 
 
         const next = () => {
-            if(teamImageIndexState < images.length - 1)
-            setTeamImageIndexState(teamImageIndexState + 1)
+            if (teamImageIndexState < teams.length - 1)
+                setTeamImageIndexState(teamImageIndexState + 1)
         };
 
         const previous = () => {
-            if(teamImageIndexState > 0)
-            setTeamImageIndexState(teamImageIndexState - 1)
+            if (teamImageIndexState > 0)
+                setTeamImageIndexState(teamImageIndexState - 1)
         };
 
 
@@ -392,7 +399,7 @@ export const HomePageScreen = () => {
             <div className="container" style={{ padding: '50px 0' }}>
                 <div className="row">
                     <div className="col-4">
-                        <img style={{ borderRadius: '5px', width: '100%' }} src={images[teamImageIndexState].large} alt="" />
+                        <img style={{ borderRadius: '5px', width: '100%' }} src={teams[teamImageIndexState].large} alt="" />
                         <div className="mt-3 d-flex flex-row justify-content-between">
                             <button
                                 style={{
@@ -419,7 +426,7 @@ export const HomePageScreen = () => {
                                 <div style={{
                                     position: 'absolute',
                                     top: '50%', left: '0', transform: 'translateY(-50%)',
-                                    width: `${(teamImageIndexState + 1) / images.length * 100}%`, border: '1px solid #7BA6B0ff'
+                                    width: `${(teamImageIndexState + 1) / teams.length * 100}%`, border: '1px solid #7BA6B0ff'
                                 }}></div>
                                 <div style={{
                                     position: 'absolute',
@@ -428,7 +435,7 @@ export const HomePageScreen = () => {
                                     justifyContent: 'space-between'
                                 }}>
                                     <span>01</span>
-                                    <span>{images.length}</span>
+                                    <span>{teams.length}</span>
                                 </div>
 
                             </div>
@@ -443,7 +450,7 @@ export const HomePageScreen = () => {
                                     outline: 'none',
                                     color: '#fff'
                                 }}
-                                disabled={teamImageIndexState == images.length}
+                                disabled={teamImageIndexState == teams.length}
                                 onClick={next}
                             >
                                 {'>'}
@@ -457,15 +464,20 @@ export const HomePageScreen = () => {
                         </div>
                         <hr style={{ marginLeft: 0, width: '120px', height: '3px', backgroundColor: '#5DD1E1ff' }} />
                         <div>
-                            <h2>Huynh Van Phuoc</h2>
-                            <span>Software Developer</span>
+                            <h2>{teams[teamImageIndexState].name}</h2>
+                            <span>{teams[teamImageIndexState].roll} | <span>
+                                <img width="16px" height="16px" style={{ marginRight: '5px' }} src={LinkedinSVG} alt="Linkeding" />
+                                <a href={teams[teamImageIndexState].linkedin}>{teams[teamImageIndexState].linkedin}</a>
+                            </span>
+                            </span>
+
                         </div>
                         <div style={{ marginTop: '40px' }}>
                             <ReactSlickStyle>
                                 <Slider {...settings}
                                 >
                                     {
-                                        images.map(img => (
+                                        teams.map(img => (
                                             <img src={img.medium} alt="" />
                                         ))
                                     }
