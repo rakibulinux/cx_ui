@@ -93,6 +93,8 @@ export const HomePageScreen = () => {
         'cx/usdt', 'cx/eth', 'eth/usdt'
     ]
 
+    const [teamImageIndexState, setTeamImageIndexState] = React.useState(0);
+
     const [KlineState1, setKline1State] = React.useState<{ pv: string }>();
     const [KlineState2, setKline2State] = React.useState<{ pv: string }>();
     const [KlineState3, setKline3State] = React.useState<{ pv: string }>();
@@ -372,11 +374,25 @@ export const HomePageScreen = () => {
             slidesToShow: 3,
             slidesToScroll: 1
         };
+
+
+
+        const next = () => {
+            if(teamImageIndexState < images.length - 1)
+            setTeamImageIndexState(teamImageIndexState + 1)
+        };
+
+        const previous = () => {
+            if(teamImageIndexState > 0)
+            setTeamImageIndexState(teamImageIndexState - 1)
+        };
+
+
         return (
             <div className="container" style={{ padding: '50px 0' }}>
                 <div className="row">
                     <div className="col-4">
-                        <img style={{ borderRadius: '5px', width: '100%' }} src={images[0].large} alt="" />
+                        <img style={{ borderRadius: '5px', width: '100%' }} src={images[teamImageIndexState].large} alt="" />
                         <div className="mt-3 d-flex flex-row justify-content-between">
                             <button
                                 style={{
@@ -389,6 +405,8 @@ export const HomePageScreen = () => {
                                     outline: 'none',
                                     color: '#fff'
                                 }}
+                                disabled={teamImageIndexState == 0}
+                                onClick={previous}
                             >
                                 {'<'}
                             </button>
@@ -401,7 +419,7 @@ export const HomePageScreen = () => {
                                 <div style={{
                                     position: 'absolute',
                                     top: '50%', left: '0', transform: 'translateY(-50%)',
-                                    width: '10%', border: '1px solid #7BA6B0ff'
+                                    width: `${(teamImageIndexState + 1) / images.length * 100}%`, border: '1px solid #7BA6B0ff'
                                 }}></div>
                                 <div style={{
                                     position: 'absolute',
@@ -410,7 +428,7 @@ export const HomePageScreen = () => {
                                     justifyContent: 'space-between'
                                 }}>
                                     <span>01</span>
-                                    <span>12</span>
+                                    <span>{images.length}</span>
                                 </div>
 
                             </div>
@@ -425,6 +443,8 @@ export const HomePageScreen = () => {
                                     outline: 'none',
                                     color: '#fff'
                                 }}
+                                disabled={teamImageIndexState == images.length}
+                                onClick={next}
                             >
                                 {'>'}
                             </button>
@@ -435,18 +455,20 @@ export const HomePageScreen = () => {
                             <h1>Our Team</h1>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, at? Odit recusandae, hic ratione optio atque magni laudantium dolor sint repellendus deleniti, aperiam similique ad, incidunt molestiae? Esse, quaerat officia.</p>
                         </div>
-                        <hr style={{ marginLeft: 0,  width: '120px', height: '3px', backgroundColor: '#5DD1E1ff' }} />
+                        <hr style={{ marginLeft: 0, width: '120px', height: '3px', backgroundColor: '#5DD1E1ff' }} />
                         <div>
                             <h2>Huynh Van Phuoc</h2>
                             <span>Software Developer</span>
                         </div>
                         <div style={{ marginTop: '40px' }}>
                             <ReactSlickStyle>
-                                <Slider {...settings}>
-                                    <img src={images[0].medium} alt="" />
-                                    <img src={images[1].medium} alt="" />
-                                    <img src={images[2].medium} alt="" />
-                                    <img src={images[3].medium} alt="" />
+                                <Slider {...settings}
+                                >
+                                    {
+                                        images.map(img => (
+                                            <img src={img.medium} alt="" />
+                                        ))
+                                    }
                                 </Slider>
                             </ReactSlickStyle>
                         </div>
