@@ -14,16 +14,12 @@ import AppStore from './assets/app_store_download.png';
 import GooglePlay from './assets/google_play_download.png';
 import AndroidAPK from './assets/android_apk_download.png';
 import Scan from './assets/scan_download.png';
-import LinkedinSVG from './assets/svg/linkedin.svg';
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 
 import Exchange from './assets/mobile.png';
 
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
+import { TeamSection } from '../../containers';
 
 const Title = styled.h1`
     color: #fff;
@@ -64,15 +60,7 @@ const MarketChartItem = styled.div`
     }
 `;
 
-const ReactSlickStyle = styled.div`
-    .slick-slide {
-    padding-left: 20px;
-}
 
-    .slick-list [data-slick-index="0"] {
-        padding-left: 0;
-    }
-`;
 
 const defaultTicker = {
     amount: '0.0',
@@ -94,7 +82,6 @@ export const HomePageScreen = () => {
         'cx/usdt', 'cx/eth', 'eth/usdt'
     ]
 
-    const [teamImageIndexState, setTeamImageIndexState] = React.useState(0);
 
     const [KlineState1, setKline1State] = React.useState<{ pv: string }>();
     const [KlineState2, setKline2State] = React.useState<{ pv: string }>();
@@ -311,7 +298,7 @@ export const HomePageScreen = () => {
     const renderPoster = () => {
         return (
             <Section>
-                <div style={{ padding: '150px 0', backgroundColor: '#292D3F' }}>
+                <div style={{ padding: '50px 0', backgroundColor: '#292D3F' }}>
                     <div className="container">
                         <div className="row">
                             <div className="col-6">
@@ -348,148 +335,13 @@ export const HomePageScreen = () => {
         );
     }
 
-    const renderTeam = () => {
-        const teams = [
-            {
-                large: 'https://fakeimg.pl/400x600/?text=1&font=GoogleSans',
-                medium: 'https://fakeimg.pl/200x300/?text=1&font=GoogleSans',
-                name: 'Huynh Van Phuoc',
-                roll: 'Reactjs Developer',
-                linkedin: 'https://www.linkedin.com'
-            },
-            {
-                large: 'https://fakeimg.pl/400x600/?text=2&font=GoogleSans',
-                medium: 'https://fakeimg.pl/200x300/?text=2&font=GoogleSans',
-                name: 'Le Thanh Dat',
-                roll: 'Reactjs Developer',
-                linkedin: 'https://www.linkedin.com'
-            },
-            {
-                large: 'https://fakeimg.pl/400x600/?text=3&font=GoogleSans',
-                medium: 'https://fakeimg.pl/200x300/?text=3&font=GoogleSans',
-                name: 'Ngo Nhat Duy',
-                roll: 'Reactjs Developer',
-                linkedin: 'https://www.linkedin.com'
-            },
-
-        ];
-        var settings = {
-            arrows: false,
-            dots: false,
-            infinite: false,
-            speed: 500,
-            slidesToShow: 3,
-            slidesToScroll: 1
-        };
-
-
-
-        const next = () => {
-            if (teamImageIndexState < teams.length - 1)
-                setTeamImageIndexState(teamImageIndexState + 1)
-        };
-
-        const previous = () => {
-            if (teamImageIndexState > 0)
-                setTeamImageIndexState(teamImageIndexState - 1)
-        };
-
-
+   
+   const renderTeam = () => {
         return (
-            <div className="container" style={{ padding: '50px 0' }}>
-                <div className="row">
-                    <div className="col-4">
-                        <img style={{ borderRadius: '5px', width: '100%' }} src={teams[teamImageIndexState].large} alt="" />
-                        <div className="mt-3 d-flex flex-row justify-content-between">
-                            <button
-                                style={{
-                                    width: '60px',
-                                    height: '60px',
-                                    borderRadius: '6px',
-                                    fontSize: '2rem',
-                                    backgroundColor: '#5DD1E1ff',
-                                    border: 'none',
-                                    outline: 'none',
-                                    color: '#fff'
-                                }}
-                                disabled={teamImageIndexState == 0}
-                                onClick={previous}
-                            >
-                                {'<'}
-                            </button>
-                            <div style={{ position: 'relative', width: '150px' }}>
-                                <div style={{
-                                    position: 'absolute',
-                                    top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-                                    width: '100%', border: '1px solid #686A75ff'
-                                }}></div>
-                                <div style={{
-                                    position: 'absolute',
-                                    top: '50%', left: '0', transform: 'translateY(-50%)',
-                                    width: `${(teamImageIndexState + 1) / teams.length * 100}%`, border: '1px solid #7BA6B0ff'
-                                }}></div>
-                                <div style={{
-                                    position: 'absolute',
-                                    top: '25%', left: '-5%', transform: 'translateY(-50%)',
-                                    width: '110%', display: 'flex', flexDirection: 'row',
-                                    justifyContent: 'space-between'
-                                }}>
-                                    <span>01</span>
-                                    <span>{teams.length}</span>
-                                </div>
-
-                            </div>
-                            <button
-                                style={{
-                                    width: '60px',
-                                    height: '60px',
-                                    borderRadius: '6px',
-                                    fontSize: '2rem',
-                                    backgroundColor: '#5DD1E1ff',
-                                    border: 'none',
-                                    outline: 'none',
-                                    color: '#fff'
-                                }}
-                                disabled={teamImageIndexState == teams.length}
-                                onClick={next}
-                            >
-                                {'>'}
-                            </button>
-                        </div>
-                    </div>
-                    <div className="col-8" style={{ paddingLeft: '50px' }}>
-                        <div>
-                            <h1>Our Team</h1>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, at? Odit recusandae, hic ratione optio atque magni laudantium dolor sint repellendus deleniti, aperiam similique ad, incidunt molestiae? Esse, quaerat officia.</p>
-                        </div>
-                        <hr style={{ marginLeft: 0, width: '120px', height: '3px', backgroundColor: '#5DD1E1ff' }} />
-                        <div>
-                            <h2>{teams[teamImageIndexState].name}</h2>
-                            <span>{teams[teamImageIndexState].roll} | <span>
-                                <img width="16px" height="16px" style={{ marginRight: '5px' }} src={LinkedinSVG} alt="Linkeding" />
-                                <a href={teams[teamImageIndexState].linkedin}>{teams[teamImageIndexState].linkedin}</a>
-                            </span>
-                            </span>
-
-                        </div>
-                        <div style={{ marginTop: '40px' }}>
-                            <ReactSlickStyle>
-                                <Slider {...settings}
-                                >
-                                    {
-                                        teams.map(img => (
-                                            <img src={img.medium} alt="" />
-                                        ))
-                                    }
-                                </Slider>
-                            </ReactSlickStyle>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <TeamSection />
         );
-    }
+   }
+    
 
     return (
         <div>
