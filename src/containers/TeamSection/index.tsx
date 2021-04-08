@@ -127,7 +127,7 @@ export const TeamSection = () => {
     return (
         <div className="container" style={{ padding: '50px 0' }}>
             <div className="row">
-                <div className="col-4">
+                <div className="col-4 d-flex flex-column justify-content-end">
                     <img style={{ borderRadius: '5px', width: '100%' }} src={teams[teamImageIndexState].large} alt="" />
                     <div className="mt-3 d-flex flex-row justify-content-between">
                         <button
@@ -189,7 +189,18 @@ export const TeamSection = () => {
                 <div className="col-8" style={{ paddingLeft: '50px' }}>
                     <div>
                         <h2 style={{ fontSize: '3rem' }}>Our Team</h2>
-                        <p style={{ fontSize: '1.3rem' }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, at? Odit recusandae, hic ratione optio atque magni laudantium dolor sint repellendus deleniti, aperiam similique ad, incidunt molestiae? Esse, quaerat officia.</p>
+                        <p style={{ fontSize: '1.3rem' }}>
+                            CX Exchange, developed by ZoziTech, is a product of ZoziTech Software company.
+                        </p>
+                        <p style={{ fontSize: '1.3rem' }}>
+                            ZoziTech is located in Vietnam. We specialize in cryptocurrency and blockchain. We currently have over 15 developers and 5 officers and be continuing to scale up our business.
+                        </p>
+                        <p style={{ fontSize: '1.3rem' }}>
+                            Our development team has extensive experience in Blockchain products, crypto exchange, CEX/DEX exchange.
+                        </p>
+                        <p style={{ fontSize: '1.3rem' }}>
+                            ZoziTech was founded by Mr. Vinh who has 6 years experience in the crypto market. He has been involved in the development of several Defi projects and Crypto exchanges.
+                        </p>
                     </div>
                     <hr style={{ marginLeft: 0, width: '120px', height: '3px', backgroundColor: '#5DD1E1ff' }} />
                     <div>
