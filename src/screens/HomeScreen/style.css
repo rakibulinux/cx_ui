@@ -128,16 +128,6 @@
     background: rgba(48, 103, 240, .8);
 }
 
-.slick-slide img {
-    transition: all .2s;
-}
-
-.slick-slide img:hover {
-    display: block;
-    border: 3px solid #fff;
-    cursor: pointer;
-}
-
 
 /* --------Markets---------------------------- */
 

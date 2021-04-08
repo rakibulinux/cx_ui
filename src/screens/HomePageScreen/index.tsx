@@ -19,6 +19,7 @@ import Exchange from './assets/mobile.png';
 
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
+import { TeamSection } from '../../containers';
 
 const Title = styled.h1`
     color: #fff;
@@ -59,6 +60,8 @@ const MarketChartItem = styled.div`
     }
 `;
 
+
+
 const defaultTicker = {
     amount: '0.0',
     last: '0.0',
@@ -78,6 +81,7 @@ export const HomePageScreen = () => {
     const market_ids = [
         'cx/usdt', 'cx/eth', 'eth/usdt'
     ]
+
 
     const [KlineState1, setKline1State] = React.useState<{ pv: string }>();
     const [KlineState2, setKline2State] = React.useState<{ pv: string }>();
@@ -294,7 +298,7 @@ export const HomePageScreen = () => {
     const renderPoster = () => {
         return (
             <Section>
-                <div style={{ padding: '150px 0', backgroundColor: '#292D3F' }}>
+                <div style={{ padding: '50px 0', backgroundColor: '#292D3F' }}>
                     <div className="container">
                         <div className="row">
                             <div className="col-6">
@@ -331,6 +335,14 @@ export const HomePageScreen = () => {
         );
     }
 
+   
+   const renderTeam = () => {
+        return (
+            <TeamSection />
+        );
+   }
+    
+
     return (
         <div>
             {renderTitle()}
@@ -338,6 +350,7 @@ export const HomePageScreen = () => {
             {/* {renderInverstIn()} */}
             {renderSupport()}
             {renderPoster()}
+            {renderTeam()}
         </div>
     )
 }
