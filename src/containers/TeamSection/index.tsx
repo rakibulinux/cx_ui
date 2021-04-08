@@ -30,36 +30,52 @@ export const TeamSection = () => {
 
     const teams = [
         {
-            large: 'https://fakeimg.pl/400x600/?text=1&font=GoogleSans',
-            medium: 'https://fakeimg.pl/200x300/?text=1&font=GoogleSans',
+            large: 'https://i.imgur.com/ibxsOOc.png',
+            medium: 'https://i.imgur.com/NKJh3rA.png',
+            name: 'Tran Van Vinh',
+            roll: 'CEO of ZoziTech and CX Exchange',
+            linkedin: 'https://www.linkedin.com/in/vinh-tran-88237620a/',
+            description: ''
+        },
+        {
+            large: 'https://i.imgur.com/719PzQu.png',
+            medium: 'https://i.imgur.com/avcxjzo.png',
             name: 'Huynh Van Phuoc',
-            roll: 'Reactjs Developer',
-            linkedin: 'https://www.linkedin.com',
-            description: 'Lorem asd213'
+            roll: 'Blockchain and NodeJS Developer',
+            linkedin: 'https://www.linkedin.com/in/phuochuynh892/',
+            description: ''
         },
         {
-            large: 'https://fakeimg.pl/400x600/?text=2&font=GoogleSans',
-            medium: 'https://fakeimg.pl/200x300/?text=2&font=GoogleSans',
+            large: 'https://i.imgur.com/TRJ4uWc.jpg',
+            medium: 'https://i.imgur.com/U33Yui3.jpg',
             name: 'Le Thanh Dat',
-            roll: 'Reactjs Developer',
-            linkedin: 'https://www.linkedin.com',
-            description: 'Lorem asd213'
+            roll: 'Blockchain and NodeJS Developer',
+            linkedin: 'https://www.linkedin.com/in/le-thanh-dat-9050451b4/',
+            description: ''
         },
         {
-            large: 'https://fakeimg.pl/400x600/?text=3&font=GoogleSans',
-            medium: 'https://fakeimg.pl/200x300/?text=3&font=GoogleSans',
+            large: 'https://i.imgur.com/RcbaQlg.png',
+            medium: 'https://i.imgur.com/A3Jwx10.png',
             name: 'Ngo Nhat Duy',
             roll: 'Reactjs Developer',
-            linkedin: 'https://www.linkedin.com',
-            description: 'Lorem asd213'
+            linkedin: 'https://www.linkedin.com/in/nhat-duy-16803720a/',
+            description: ''
         },
         {
-            large: 'https://fakeimg.pl/400x600/?text=4&font=GoogleSans',
-            medium: 'https://fakeimg.pl/200x300/?text=4&font=GoogleSans',
-            name: 'Huynh Van Phuoc',
+            large: 'https://i.imgur.com/7KCaBrl.png',
+            medium: 'https://i.imgur.com/wmXpr0l.png',
+            name: 'Truong Thanh Huy',
             roll: 'Reactjs Developer',
-            linkedin: 'https://www.linkedin.com',
-            description: 'Lorem asd213'
+            linkedin: 'https://www.linkedin.com/in/th%C3%A0nh-huy-tr%C6%B0%C6%A1ng-39a965209/',
+            description: ''
+        },
+        {
+            large: 'https://i.imgur.com/aLnnIAY.png',
+            medium: 'https://i.imgur.com/JN5pEwr.png',
+            name: 'Nguyen Thi Ha Duyen',
+            roll: 'Desinger',
+            linkedin: 'https://www.linkedin.com/in/duyen-nguyen-b9803420a/',
+            description: ''
         },
 
     ];
@@ -190,8 +206,9 @@ export const TeamSection = () => {
                     <div>
                         <h2>{teams[teamImageIndexState].name}</h2>
                         <p style={{ fontSize: '1.3rem' }}>{teams[teamImageIndexState].roll} | <span>
-                            <img width="16px" height="16px" style={{ marginRight: '5px' }} src={LinkedinSVG} alt="Linkeding" />
-                            <a href={teams[teamImageIndexState].linkedin}>{teams[teamImageIndexState].linkedin}</a>
+                            <a href={teams[teamImageIndexState].linkedin}>
+                                <img width="16px" height="16px" style={{ marginRight: '5px' }} src={LinkedinSVG} alt="Linkeding" />
+                            </a>
                         </span>
                         </p>
                         <p style={{ fontSize: '1.3rem' }}>
