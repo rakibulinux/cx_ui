@@ -42,7 +42,7 @@ export const TeamSection = () => {
             medium: 'https://i.imgur.com/avcxjzo.png',
             name: 'Huynh Van Phuoc',
             roll: 'Blockchain and NodeJS Developer',
-            linkedin: 'https://www.linkedin.com/in/phuochuynh892/',
+            linkedin: '',
             description: ''
         },
         {
@@ -50,7 +50,7 @@ export const TeamSection = () => {
             medium: 'https://i.imgur.com/U33Yui3.jpg',
             name: 'Le Thanh Dat',
             roll: 'Blockchain and NodeJS Developer',
-            linkedin: 'https://www.linkedin.com/in/le-thanh-dat-9050451b4/',
+            linkedin: '',
             description: ''
         },
         {
@@ -58,7 +58,7 @@ export const TeamSection = () => {
             medium: 'https://i.imgur.com/A3Jwx10.png',
             name: 'Ngo Nhat Duy',
             roll: 'Reactjs Developer',
-            linkedin: 'https://www.linkedin.com/in/nhat-duy-16803720a/',
+            linkedin: '',
             description: ''
         },
         {
@@ -66,7 +66,7 @@ export const TeamSection = () => {
             medium: 'https://i.imgur.com/wmXpr0l.png',
             name: 'Truong Thanh Huy',
             roll: 'Reactjs Developer',
-            linkedin: 'https://www.linkedin.com/in/th%C3%A0nh-huy-tr%C6%B0%C6%A1ng-39a965209/',
+            linkedin: '',
             description: ''
         },
         {
@@ -74,7 +74,7 @@ export const TeamSection = () => {
             medium: 'https://i.imgur.com/JN5pEwr.png',
             name: 'Nguyen Thi Ha Duyen',
             roll: 'Desinger',
-            linkedin: 'https://www.linkedin.com/in/duyen-nguyen-b9803420a/',
+            linkedin: '',
             description: ''
         },
 
