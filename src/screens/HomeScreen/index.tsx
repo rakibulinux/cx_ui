@@ -1,6 +1,6 @@
 import * as React  from "react";
 import { Link } from "react-router-dom";
-import {MarketsTableScreen} from '../../containers/MarketsTableScreen';
+import {MarketsTableScreen} from '../../containers/MarketsList';
 
 import {Row, Col } from 'react-bootstrap';
 import Slider from "react-slick";

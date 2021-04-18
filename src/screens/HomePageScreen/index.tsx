@@ -20,6 +20,7 @@ import Exchange from './assets/mobile.png';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import { TeamSection } from '../../containers';
+import { MarketsTableScreen } from '../../containers/MarketsList';
 
 const Title = styled.h1`
     color: #fff;
@@ -106,7 +107,7 @@ export const HomePageScreen = () => {
 
     React.useEffect(() => {
         dispatchFetchCurrencies();
-    });
+    }, []);
 
     const fetchMarketsKlines = async (marketId: string, from: number, to: number) => {
         try {
@@ -341,13 +342,19 @@ export const HomePageScreen = () => {
             <TeamSection />
         );
    }
-    
 
+   const renderMarketsList = () => {
+       return (
+           <MarketsTableScreen />
+       );
+   }
+   
+   
     return (
-        <div>
+        <div style={{backgroundColor: '#2B2E3D'}}>
             {renderTitle()}
             {renderMarket()}
-            {/* {renderInverstIn()} */}
+            {renderMarketsList()}
             {renderSupport()}
             {renderPoster()}
             {renderTeam()}
