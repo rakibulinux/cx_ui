@@ -92,6 +92,7 @@ import { SaleListScreen } from '../../plugins/Sale';
 import { SaleDetailScreen } from '../../plugins/Sale/screens/SaleDetailScreen';
 import { IEODetailMobileScreen, IEOListMobileScreen } from '../../mobile/plugins/IEO';
 import { TradingCompetionListScreen, TradingCompetitionDetailScreen } from '../../plugins/TradingCompetion';
+import { StackingListScreen } from '../../plugins/Stacking';
 
 interface ReduxProps {
     colorTheme: string;
@@ -308,6 +309,7 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/profile" component={ProfileScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/wallets" component={WalletsScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/security/2fa" component={ProfileTwoFactorAuthScreen} />
+                    <Route path="/staking" component={StackingListScreen} />
                     <Route path="/airdrop" exact component={AirdropList} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/airdrop/detail/:airdropID" component={AirdropDetail} />
                     <Route path="/ieo" exact component={SaleListScreen} />
