@@ -1,2 +1,2 @@
-export * from './StackingDetailScreen';
-export * from './StackingListScreen';
+export * from './StakingDetailScreen';
+export * from './StakingListScreen';

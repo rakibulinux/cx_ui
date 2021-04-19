@@ -1,7 +1,7 @@
 import * as classnames from 'classnames';
 import * as React from 'react';
 import styled from 'styled-components';
-import { StackingList } from '../../containers';
+import { StakingList } from '../../containers';
 
 const StackingListScreenStyles = styled.div`
     button {
@@ -27,15 +27,9 @@ const StackingListScreenStyles = styled.div`
         color: #fff;
         background-color: #4231c8;
     }
-
-    .container-fluid {
-        .row {
-            margin-top: '50px'
-        }
-    }
 `;
 
-export const StackingListScreen = () => {
+export const StakingListScreen = () => {
     const [filterStackingState, setFilterStackingState] = React.useState<'upcoming' | 'running' | 'all'>("running");
     const upcomingButtonClassName = classnames('stack-tab-btn', filterStackingState === 'upcoming' ? 'stack-tab-btn__active' : '');
     const runningButtonClassName = classnames('stack-tab-btn', filterStackingState === 'running' ? 'stack-tab-btn__active' : '');
@@ -68,8 +62,8 @@ export const StackingListScreen = () => {
                         </button>
                     </div>
                 </div>
-                <div className="row">
-                    <StackingList />
+                <div className="row mt-5">
+                    <StakingList />
                 </div>
             </div>
         </StackingListScreenStyles>

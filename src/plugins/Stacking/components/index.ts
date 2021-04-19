@@ -1,1 +1,1 @@
-export * from './StackingItem';
+export * from './StakingItem';
