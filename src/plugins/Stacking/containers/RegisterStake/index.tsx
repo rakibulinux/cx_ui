@@ -1,3 +1,4 @@
+import * as classNames from 'classnames';
 import * as React from 'react';
 import styled from 'styled-components';
 
@@ -12,7 +13,7 @@ const RegisterStakeStyles = styled.div`
         align-items: center;
         span {
             font-size: 14px;
-            color: #b5b5b5;
+            color: #fff;
             white-space: nowrap
         }
         input {
@@ -41,23 +42,25 @@ const RegisterStakeStyles = styled.div`
         padding: 0 4px;
         line-height: 40px;
         background-color: #fff;
-        color: #7b7b7b;
-        border: 1px solid hsla(0,0%,85.5%,.5);
+        color: #333;
+        border: 1px solid #30B57E;
         font-size: 15px;
         text-align: center;
         margin: 0 6px 6px 0;
         outline: none;
-    }
-    .period-btn__active {
-        background-color: #4231c8;
-        color: #fff;
-        border-color: #4231c8;
+        transition: all 0.3s;
+
+        &__active {
+            background-color: #30B57E;
+            color: #fff;
+            border-color: #30B57E;
+        }
     }
 
     .staking-details {
         margin-bottom: 20px;
         font-size: 14px;
-        background-color: #fafafa;
+        background-color: #313445;
         padding: 20px;
         .detail-row {
             display: flex;
@@ -66,13 +69,13 @@ const RegisterStakeStyles = styled.div`
             margin-bottom: 8px;
 
             .key {
-                color: #7b7b7b;
+                color: #fff;
                 padding-right: 8px;
             }
             .value {
                 font-weight: 700;
                 text-align: right;
-                color: #000;
+                color: #fff;
                 flex: 1 0 auto;
             }
         }
@@ -80,6 +83,7 @@ const RegisterStakeStyles = styled.div`
     .agree {
         display: flex;
         line-height: 1.5;
+        color: #fff;
         input {
             transition: background-color .3s;
             visibility: visible;
@@ -106,7 +110,7 @@ const RegisterStakeStyles = styled.div`
         padding: 0;
         border: 0;
         cursor: pointer;
-        background: #4231c8;
+        background: #30B57E;
         color: #fff;
         transition: .3s;
         display: flex;
@@ -116,19 +120,66 @@ const RegisterStakeStyles = styled.div`
         flex-direction: column;
         width: 100%;
         height: 50px;
-    font-size: 20px;
-    font-weight: 800;
+        font-size: 20px;
+        font-weight: 800;
     }
+
+    
 `;
 
-export const RegisterStake = () => {
+interface Reward {
+    period: number,
+    totalAmount: string,
+    capAmount?: string,
+    minAmount: string,
+    capAmountPerUser?: string,
+    annualRate: string,
+    paymentTime: string,
+}
+interface RegisterStakeProps {
+    currency_id: string;
+    start_time: string;
+    end_time: string;
+    reward_desc: Reward[];
+}
+
+const DEFAULT_PERIOD_INDEX = 0;
+
+export const RegisterStake: React.FC<RegisterStakeProps> = (props: RegisterStakeProps) => {
+    const { currency_id, reward_desc } = props;
+    const [selectedPeriodIndexState, setSelectedPeriodIndexState] = React.useState<number>(DEFAULT_PERIOD_INDEX); 
+    const [minimumState, setMinimumState] = React.useState("");
+    const [annualizedRewardState, setAnnualizedRewardState] = React.useState(0);
+    const [stakingDateState, setStakingDateState] = React.useState("");
+    const [lockupReleaseState, setLockupReleaseState] = React.useState("");
+    const [expectedRewardState, setExpectedRewardState] = React.useState("");
+
+    const selecterdPeriodButtonClass = classNames('period-btn', 'period-btn__active');
+
+
+    const handleSelectLockupPeriod = (reward: Reward, period_index: number) => {
+        setSelectedPeriodIndexState(period_index);
+        setMinimumState(reward.minAmount);
+        setAnnualizedRewardState(Number(reward.annualRate) * 100);
+        setStakingDateState((new Date().toDateString()));
+        setLockupReleaseState(reward.paymentTime);
+        setExpectedRewardState(reward.totalAmount);
+    }
+
+    React.useEffect(() => {
+        if(reward_desc.length > 0) {
+            handleSelectLockupPeriod(reward_desc[DEFAULT_PERIOD_INDEX], DEFAULT_PERIOD_INDEX);
+        }
+    }, [reward_desc.length]);
+
+    
     return (
         <RegisterStakeStyles>
             <div className="container">
                 <div className="row">
                     <div className="col-12 text-right">
-                        <span>
-                            Available Amount: 0.00000000 VLX
+                        <span style={{ color: '#fff' }}>
+                            Available Amount: 0.00000000 {currency_id}
                         </span>
                         <div className="amount-box">
                             <span>AMOUNT</span>
@@ -139,9 +190,17 @@ export const RegisterStake = () => {
                 </div>
                 <div className="row mt-5">
                     <div className="col-12">
-                        <span>Lock-up Period</span>
+                        <h5>Lock-up Period</h5>
                         <div>
-                            <button className="period-btn period-btn__active">30 days</button>
+                            {
+                                reward_desc.map((reward: Reward, index: number) => (
+                                    <button
+                                        className={selectedPeriodIndexState === index ? selecterdPeriodButtonClass : 'period-btn'}
+                                        onClick={() => handleSelectLockupPeriod(reward, index)}>
+                                        {reward.period / 24} days
+                                    </button>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
@@ -150,23 +209,23 @@ export const RegisterStake = () => {
                         <div className="staking-details">
                             <div className="detail-row">
                                 <span className="key">Minimum Stake</span>
-                                <span className="value">0 VLX</span>
+                                <span className="value">{minimumState} VLX</span>
                             </div>
                             <div className="detail-row">
                                 <span className="key">Annualized Rewards</span>
-                                <span className="value">18.25%</span>
+                                <span className="value">{annualizedRewardState}%</span>
                             </div>
                             <div className="detail-row">
                                 <span className="key">Staking Date</span>
-                                <span className="value">2021-04-19 15:20 (GMT+7)</span>
+                                <span className="value">{stakingDateState}</span>
                             </div>
                             <div className="detail-row">
                                 <span className="key">Lockup Release</span>
-                                <span className="value">2021-05-19 15:20 (GMT+7)</span>
+                                <span className="value">{lockupReleaseState}</span>
                             </div>
                             <div className="detail-row">
                                 <span className="key">Expected Rewards</span>
-                                <span className="value">351.52500000 VLX</span>
+                                <span className="value">{expectedRewardState} {currency_id.toUpperCase()}</span>
                             </div>
                         </div>
                     </div>

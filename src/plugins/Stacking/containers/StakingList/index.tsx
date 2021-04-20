@@ -95,7 +95,7 @@ export const StakingList = () => {
             "end_time": "2021-04-10T05:00:00.000Z",
             "active": true,
             "logo_image": "https://static.probit.com/files/dump/web/banner-ethp.png",
-            "event_name": "ETHPlus (ETHP)",
+            "event_name": "ETHPlus (ETHP) ETHPlus (ETHP) ETHPlus (ETHP) ETHPlus (ETHP)",
             "prize_string": "Up to 30% per annum rewards",
             "reward_desc": [
                 {

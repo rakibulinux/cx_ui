@@ -20,46 +20,24 @@ interface StackingItemProps {
 }
 
 const StakingItemStyles = styled.div`
-    .reward-box {
-        box-sizing: border-box;
-        flex: 0 0 80px;
-        padding: 10px;
-        margin-right: 5px;
-        background-color: #fafafa;
-        border-radius: 5px;
-    }
-
-    .card-image {
-        height: 200px;
-        display: flex;
-        align-items: center;
-        background-color: #fafafa;
-        padding: 40px;
-        img {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    .go-stack-btn {
-        background-color: #4231c8;
-        color: #fff;
-        border: 1px solid #4231c8;
-        flex: 1 1 0%;
-        padding: 0 5px;
-        white-space: nowrap;
-        font-size: 13px;
-        line-height: 36px;
-        margin: 3px;
-        text-align: center;
-        will-change: background-color;
-        transition: background-color .2s;
-    }
-
+    
     #stacking-item {
         position: relative;
         width: 100%;
         height: 100%;
+        border-radius: 5px;
+        .card-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            background-color: #fafafa;
+            padding: 40px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    
         .image {
             background-color: #fafafa;
             background-position: 50% 50%;
@@ -85,20 +63,60 @@ const StakingItemStyles = styled.div`
         }
         .text {
             background-color: #fff;
-            padding: 1rem;
+            padding: 1rem 3rem;
             .title, .reward-container {
                 padding: 0.5rem 0;
             }
             .title {
+                margin: 10px 0;
                 color: black;
                 font-size: 20px;
                 font-weight: 700;
+                width: 100%;  
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;    
             }
             .reward-container {
                 display: flex;
                 flex-direction: row;
+                .reward-box {
+                    box-sizing: border-box;
+                    flex: 0 0 80px;
+                    padding: 10px;
+                    margin-right: 5px;
+                    background-color: #fafafa;
+                    border-radius: 5px;
+                    border: 2px solid #30B57E;
+
+                    &__rate {
+                        font-weight: bold;
+                        color: #000000;
+                    }
+                }
+            }
+            .go-stack-btn {
+                background-color: #30B57E;
+                color: #fff;
+                flex: 1 1 0%;
+                padding: 0 5px;
+                border-radius: 5px;
+                white-space: nowrap;
+                font-size: 13px;
+                line-height: 36px;
+                margin: 3px;
+                text-align: center;
+                text-transform: uppercase;
+                will-change: background-color;
+                transition: background-color .2s;
+
+                :hover {
+                    background-color: #35cf8f;
+                }
             }
         }
+        
+
         .stacking-item__disabled {
             position: absolute;
             width: 100%;
@@ -134,16 +152,16 @@ export const StakingItem: React.FC<StackingItemProps> = (props: StackingItemProp
                     </div>
                 </section>
                 <section className="text">
-                    <a href="" className="title">
+                    <h3 className="title">
                         {event_name}
-                    {/* <a style={{ color: 'black', fontSize: '20px', fontWeight: 'bold' }} href=""></a> */}
-                    </a>
+                        {/* <a style={{ color: 'black', fontSize: '20px', fontWeight: 'bold' }} href=""></a> */}
+                    </h3>
                     <div className="reward-container">
                         {
                             reward_desc.map(reward => (
                                 <div className="reward-box">
-                                    <div style={{ color: '#000000' }}>{Number(reward.annualRate) * 100}%</div>
-                                    <div>{reward.period / 24} days</div>
+                                    <div className="reward-box__rate">{Number(reward.annualRate) * 100}%</div>
+                                    <div className="reward-box__period">{reward.period / 24} days</div>
                                 </div>
                             ))
                         }
