@@ -1,26 +1,32 @@
 .cr-mobile-slide{
-    width: 110vw;
-    height: 35vw;
+    width: 100vw;
+    margin-bottom: 5px;
 
     &__placeholder{
-        height: 100%;
+        height: 30vw;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     .slick-slider{
-        height: 100%;
+        width: 100%;
+        margin: 0;
         .slick-list{
-            height: 100%;
-            & *{
-                height: 100%;
-            }
             .slick-track{
+                width : 100%;
                 .slick-slide{
-                    img{
-                        width: 100%;
-                        object-fit: cover;
+                    width : 100%;
+                    padding: 0;
+                    & *{
+                        width : 100%;
+                    }
+                    a{
+                        display: block !important;
+                        img{
+                            height: auto;
+                            object-fit: cover;
+                        }
                     }
                 }
             }
