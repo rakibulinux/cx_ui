@@ -1,16 +1,18 @@
 .custom-input {
+  padding: '1rem 0';
   input {
     border-color: var(--input-border-color);
   }
 
   label {
     background: var(--input-background-color);
-    font-size: calc(var(--gap) * 2);
-    left: 5%;
+    font-size: 12px;
+    left: 2%;
     margin-top: -8px;
     padding: 0 calc(var(--gap) * 0.7);
     position: absolute;
     top: 0;
+    color: #fff;
     z-index: 5;
   }
 
@@ -19,6 +21,7 @@
     background: var(--input-background-color) !important;
     box-shadow: none;
     color: var(--input-text-color);
+    
   }
 
   input:focus-within {

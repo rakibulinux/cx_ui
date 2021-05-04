@@ -1,10 +1,16 @@
 import { CommonError } from '../../types';
 import {
+    ALL_CHILD_CURRENCIES_DATA,
+    ALL_CHILD_CURRENCIES_ERROR,
+    ALL_CHILD_CURRENCIES_FETCH,
     SET_MOBILE_WALLET_UI,
     WALLETS_ADDRESS_DATA,
     WALLETS_ADDRESS_DATA_WS,
     WALLETS_ADDRESS_ERROR,
     WALLETS_ADDRESS_FETCH,
+    WALLETS_CHILD_CURRENCIES_DATA,
+    WALLETS_CHILD_CURRENCIES_ERROR,
+    WALLETS_CHILD_CURRENCIES_FETCH,
     WALLETS_DATA,
     WALLETS_DATA_WS,
     WALLETS_ERROR,
@@ -15,6 +21,7 @@ import {
     WALLETS_WITHDRAW_CCY_FETCH,
 } from './constants';
 import {
+    ChildCurrenciesState,
     Wallet,
     WalletAddress,
     WalletWithdrawCCY,
@@ -87,6 +94,38 @@ export interface SetMobileWalletUi {
     payload: string;
 }
 
+export interface WalletsChildCurrenciesFetch {
+    type: typeof WALLETS_CHILD_CURRENCIES_FETCH;
+    payload: {
+        currency: string;
+    };
+}
+
+export interface WalletsChildCurrenciesData {
+    type: typeof WALLETS_CHILD_CURRENCIES_DATA;
+    payload: ChildCurrenciesState;
+}
+
+export interface WalletsChildCurrenciesError {
+    type: typeof WALLETS_CHILD_CURRENCIES_ERROR;
+    error: CommonError;
+}
+
+export interface AllChildCurrenciesFetch {
+    type: typeof ALL_CHILD_CURRENCIES_FETCH;
+}
+
+export interface AllChildCurrenciesData {
+    type: typeof ALL_CHILD_CURRENCIES_DATA;
+    payload: ChildCurrenciesState;
+}
+
+export interface AllChildCurrenciesError {
+    type: typeof ALL_CHILD_CURRENCIES_ERROR;
+    error: CommonError;
+}
+
+
 export type WalletsAction = WalletsFetch
     | WalletsData
     | WalletsDataByRanger
@@ -99,7 +138,13 @@ export type WalletsAction = WalletsFetch
     | WalletsWithdrawCcyData
     | WalletsWithdrawCcyError
     | WalletsReset
-    | SetMobileWalletUi;
+    | SetMobileWalletUi
+    | WalletsChildCurrenciesFetch
+    | WalletsChildCurrenciesData
+    | WalletsChildCurrenciesError
+    | AllChildCurrenciesFetch
+    | AllChildCurrenciesData
+    | AllChildCurrenciesError;
 
 export const walletsFetch = (): WalletsFetch => ({
     type: WALLETS_FETCH,
@@ -161,4 +206,33 @@ export const walletsReset = (): WalletsReset => ({
 export const setMobileWalletUi = (payload: SetMobileWalletUi['payload']): SetMobileWalletUi => ({
     type: SET_MOBILE_WALLET_UI,
     payload,
+});
+
+export const walletsChildCurrenciesFetch = (payload: WalletsChildCurrenciesFetch['payload']): WalletsChildCurrenciesFetch => ({
+    type: WALLETS_CHILD_CURRENCIES_FETCH,
+    payload,
+});
+
+export const walletsChildCurrenciesData = (payload: WalletsChildCurrenciesData['payload']): WalletsChildCurrenciesData => ({
+    type: WALLETS_CHILD_CURRENCIES_DATA,
+    payload,
+});
+
+export const walletsChildCurrenciesError = (error: WalletsChildCurrenciesError['error']): WalletsChildCurrenciesError => ({
+    type: WALLETS_CHILD_CURRENCIES_ERROR,
+    error,
+});
+
+export const allChildCurrenciesFetch = (): AllChildCurrenciesFetch => ({
+    type: ALL_CHILD_CURRENCIES_FETCH,
+});
+
+export const allChildCurrenciesData = (payload: AllChildCurrenciesData['payload']): AllChildCurrenciesData => ({
+    type: ALL_CHILD_CURRENCIES_DATA,
+    payload,
+});
+
+export const allChildCurrenciesError = (error: AllChildCurrenciesError['error']): AllChildCurrenciesError => ({
+    type: ALL_CHILD_CURRENCIES_ERROR,
+    error,
 });

@@ -12,11 +12,15 @@ import {
     beneficiariesDelete,
     Beneficiary,
     BeneficiaryBank,
+    ChildCurrency,
+    Currency,
     MemberLevels,
     memberLevelsFetch,
     RootState,
     selectBeneficiaries,
     selectBeneficiariesCreate,
+    selectChildCurrencies,
+    selectCurrencies,
     selectMemberLevels, selectMobileDeviceState,
     selectUserInfo,
     User,
@@ -31,6 +35,8 @@ interface ReduxProps {
     memberLevels?: MemberLevels;
     userData: User;
     isMobileDevice: boolean;
+    currencies: Currency[];
+    child_currencies: ChildCurrency[];
 }
 
 interface DispatchProps {
@@ -100,6 +106,21 @@ class BeneficiariesComponent extends React.Component<Props, State> {
         }
     }
 
+    public findBlockchainType = () => {
+        const { currency, currencies, child_currencies } = this.props;
+        const child_currencies_strings = child_currencies.map(cur => cur.id);
+
+        const parent_currencies = currencies.filter(currency => !child_currencies_strings.includes(currency.id));
+        const parent_currencies_strings = parent_currencies.map(cur => cur.id);
+        
+        const parent_index = parent_currencies_strings.findIndex((parent_currency_id: string) => parent_currency_id === currency);
+        const child_index = child_currencies_strings.findIndex((child_currency_id: string) => child_currency_id === currency);
+        
+        if (child_index !== -1) return child_currencies[child_index].blockchain_key;
+        if (parent_index !== -1) return parent_currencies[parent_index].blockchain_key;
+        return "Unavailable";
+    }
+
     public render() {
         const {
             currency,
@@ -107,6 +128,7 @@ class BeneficiariesComponent extends React.Component<Props, State> {
             beneficiaries,
             beneficiariesAddData,
             isMobileDevice,
+
         } = this.props;
         const {
             currentWithdrawalBeneficiary,
@@ -116,6 +138,8 @@ class BeneficiariesComponent extends React.Component<Props, State> {
         } = this.state;
         const filtredBeneficiaries = this.handleFilterByState(this.handleFilterByCurrency(beneficiaries, currency), ['active', 'pending']);
 
+        const blockchainType = this.findBlockchainType();
+        
         return (
             <div className="pg-beneficiaries">
                 <span className="pg-beneficiaries__title">{type === 'coin' ? this.translate('page.body.wallets.beneficiaries.title') : this.translate('page.body.wallets.beneficiaries.fiat.title')}</span>
@@ -126,6 +150,7 @@ class BeneficiariesComponent extends React.Component<Props, State> {
                         type={type}
                         handleToggleAddAddressModal={this.handleToggleAddAddressModal}
                         handleToggleConfirmationModal={this.handleToggleConfirmationModal}
+                        blockchainType={blockchainType}
                     />
                 )}
                 {isOpenConfirmationModal && (
@@ -171,7 +196,7 @@ class BeneficiariesComponent extends React.Component<Props, State> {
                         {isPending ? (
                             <span className="item__right__pending">{this.translate('page.body.wallets.beneficiaries.dropdown.pending')}</span>
                         ) : null}
-                        <span className="item__right__delete" onClick={this.handleClickDeleteAddress(item)}><TrashBin/></span>
+                        <span className="item__right__delete" onClick={this.handleClickDeleteAddress(item)}><TrashBin /></span>
                     </div>
                 </div>
             );
@@ -187,7 +212,7 @@ class BeneficiariesComponent extends React.Component<Props, State> {
                     {isPending ? (
                         <span className="item__right__pending">{this.translate('page.body.wallets.beneficiaries.dropdown.pending')}</span>
                     ) : null}
-                    <span className="item__right__delete" onClick={this.handleClickDeleteAddress(item)}><TrashBin/></span>
+                    <span className="item__right__delete" onClick={this.handleClickDeleteAddress(item)}><TrashBin /></span>
                 </div>
             </div>
         );
@@ -294,9 +319,9 @@ class BeneficiariesComponent extends React.Component<Props, State> {
                             <span className="select__left__address">{currentWithdrawalBeneficiary.data ? (currentWithdrawalBeneficiary.data as BeneficiaryBank).full_name : ''}</span>
                         </div>
                         <div className="select__right">
-                        <span className="select__right__tip" onMouseOver={this.handleToggleTip} onMouseOut={this.handleToggleTip}><TipIcon/></span>
-                        <span className="select__right__select">{this.translate('page.body.wallets.beneficiaries.dropdown.select')}</span>
-                        <span className="select__right__chevron"><ChevronIcon /></span>
+                            <span className="select__right__tip" onMouseOver={this.handleToggleTip} onMouseOut={this.handleToggleTip}><TipIcon /></span>
+                            <span className="select__right__select">{this.translate('page.body.wallets.beneficiaries.dropdown.select')}</span>
+                            <span className="select__right__chevron"><ChevronIcon /></span>
                         </div>
                     </div>
                     {isOpenDropdown && this.renderDropdownBody(beneficiaries, type)}
@@ -316,7 +341,7 @@ class BeneficiariesComponent extends React.Component<Props, State> {
                         {isPending ? (
                             <span className="select__right__pending">{this.translate('page.body.wallets.beneficiaries.dropdown.pending')}</span>
                         ) : null}
-                        <span className="select__right__tip" onMouseOver={this.handleToggleTip} onMouseOut={this.handleToggleTip}><TipIcon/></span>
+                        <span className="select__right__tip" onMouseOver={this.handleToggleTip} onMouseOut={this.handleToggleTip}><TipIcon /></span>
                         <span className="select__right__select">{this.translate('page.body.wallets.beneficiaries.dropdown.select')}</span>
                         <span className="select__right__chevron"><ChevronIcon /></span>
                     </div>
@@ -436,12 +461,15 @@ const mapStateToProps = (state: RootState): ReduxProps => ({
     memberLevels: selectMemberLevels(state),
     userData: selectUserInfo(state),
     isMobileDevice: selectMobileDeviceState(state),
+    currencies: selectCurrencies(state),
+    child_currencies: selectChildCurrencies(state)
 });
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = dispatch => ({
     deleteAddress: payload => dispatch(beneficiariesDelete(payload)),
     memberLevelsFetch: () => dispatch(memberLevelsFetch()),
     beneficiariesCreateData: payload => dispatch(beneficiariesCreateData(payload)),
+
 });
 
 // tslint:disable-next-line:no-any

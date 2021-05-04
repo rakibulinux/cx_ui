@@ -56,6 +56,8 @@ export interface DepositCryptoProps {
    * Generate address button label
    */
   buttonLabel?: string;
+
+  wallet_index: number;
 }
 
 
@@ -80,6 +82,7 @@ const DepositCrypto: React.FunctionComponent<DepositCryptoProps> = (props: Depos
     handleGenerateAddress,
     buttonLabel,
     isAccountActivated,
+    wallet_index
   } = props;
   const size = dimensions || QR_SIZE;
   const onCopy = !disabled ? handleOnCopy : undefined;
@@ -107,7 +110,7 @@ const DepositCrypto: React.FunctionComponent<DepositCryptoProps> = (props: Depos
                 <CopyableTextField
                   className={'cr-deposit-crypto__copyable-area'}
                   value={data ? data : error}
-                  fieldId={data ? 'copy_deposit_1' : 'copy_deposit_2'}
+                  fieldId={data ? 'copy_deposit_' + wallet_index : 'copy_deposit_2'}
                   copyButtonText={copyButtonText}
                   disabled={disabled}
                   label={copiableTextFieldText ? copiableTextFieldText : 'Deposit by Wallet Address'}

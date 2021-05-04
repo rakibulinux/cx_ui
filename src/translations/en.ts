@@ -266,8 +266,9 @@ export const en = {
     'page.body.openOrders.header.button.cancelAll': 'Cancel all',
 
     'page.body.history.deposit': 'Deposit History',
-    'page.body.history.deposit.header.txid': 'txID',
     'page.body.history.deposit.header.date': 'Date',
+    'page.body.history.deposit.header.txid': 'Txid Address',
+    'page.body.history.deposit.header.type': 'Type Coin',
     'page.body.history.deposit.header.currency': 'Currency',
     'page.body.history.deposit.header.amount': 'Amount',
     'page.body.history.deposit.header.status': 'Status',
@@ -298,6 +299,17 @@ export const en = {
     'page.body.history.withdraw.content.status.failed': 'Failed',
     'page.body.history.withdraw.content.status.confirming': 'Confirming',
     'page.body.history.withdraw.content.status.errored': 'Error',
+    
+    'page.body.plugins.wallet.list.button.hideSmallBalance': 'Hide Small Balances',
+    'page.body.plugins.wallet.withdraw.info.tips': 'Tips',
+    'page.body.plugins.wallet.withdraw.info.tip1': '1. Funds can only been withdrawn from your spot account. To withdraw funds in other accounts, please transfer to your spot account first.',
+    'page.body.plugins.wallet.withdraw.info.tip2': '2. When withdrawing to the Binance user\'s address, the handling fee will be returned to the Current Account by default. Learn more',
+    'page.body.plugins.wallet.withdraw.info.tip3': '3. Do not withdraw directly to a crowdfund or ICO address, as your account will not be credited with tokens from such sales.',
+    
+    'page.body.plugins.wallet.deposit.info.notice': 'Deposit Notice',
+    'page.body.plugins.wallet.deposit.info.notice1': '1. If you have deposited, please pay attention to the text messages, site letters and emails we send to you.',
+    'page.body.plugins.wallet.deposit.info.notice2': '2. Until 2 confirmations are made, an equivalent amount of your assets will be temporarily unavailable for withdrawals.',
+
 
     'page.body.history.trade': 'Trade History',
     'page.body.history.trade.header.id': 'ID',

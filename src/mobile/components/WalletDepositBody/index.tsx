@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 import { useIntl } from 'react-intl';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Blur } from '../../../components/Blur';
 import { CurrencyInfo } from '../../../components/CurrencyInfo';
 import { DepositCrypto } from '../DepositCrypto';
@@ -10,18 +10,23 @@ import { formatCCYAddress } from '../../../helpers';
 import { selectCurrencies } from '../../../modules/public/currencies';
 import { selectUserInfo } from '../../../modules/user/profile';
 import { selectWalletAddress } from '../../../modules/user/wallets';
+import { alertPush } from '../../../modules';
 
 const WalletDepositBodyComponent = props => {
   const intl = useIntl();
+  const dispatch = useDispatch();
   const currencies = useSelector(selectCurrencies);
   const user = useSelector(selectUserInfo);
   const selectedWalletAddress = useSelector(selectWalletAddress);
   const label = React.useMemo(() => intl.formatMessage({ id: 'page.body.wallets.tabs.deposit.ccy.message.address' }), [intl]);
-  const handleOnCopy = () => ({});
+  const handleOnCopy = () => {
+    dispatch(alertPush({ message: ['page.body.wallets.tabs.deposit.ccy.message.success'], type: 'success' }));
+  };
   const renderDeposit = (isAccountActivated: boolean) => {
     const {
       addressDepositError,
       wallet,
+      wallet_index
     } = props;
 
     const translate = (id: string) => intl.formatMessage({ id });
@@ -35,7 +40,7 @@ const WalletDepositBodyComponent = props => {
     const textDepositFee = `${translate('page.body.wallets.tabs.deposit.ccy.message.depositfee')} ${Number(currencyItem.deposit_fee)} ${wallet.currency.toUpperCase()}`;
 
     const checkDepositFee = Number(currencyItem.deposit_fee) != 0 ? textDepositFee : `${translate('page.body.wallets.tabs.deposit.ccy.message.depositfee')} 1 %`;
-    
+
     const textNote = `Only Deposit ${wallet.currency.toUpperCase()} to this wallet.`
 
 
@@ -70,6 +75,7 @@ const WalletDepositBodyComponent = props => {
 
           <DepositCrypto
             data={walletAddress}
+            wallet_index={wallet_index}
             handleOnCopy={handleOnCopy}
             error={error}
             textConfirmation={textConfirmation}

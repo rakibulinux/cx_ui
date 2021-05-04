@@ -8,7 +8,7 @@ import { WithdrawHistoryTable } from '../../components/WithdrawHistoryTable';
 
 const WalletsHistory: React.FC = () => {
     const intl = useIntl();
-    const { currency } = useParams();
+    const { currency } = useParams<{ currency: string }>();
     const [currentTabIndex, setCurrentTabIndex] = React.useState(0);
 
     const renderTabs = () => [
@@ -18,7 +18,7 @@ const WalletsHistory: React.FC = () => {
         },
         {
             content: currentTabIndex === 1 ? <WithdrawHistoryTable currency={currency} type="withdraws" /> : null,
-            label: intl.formatMessage( { id: 'page.mobile.wallets.withdraw.history' }),
+            label: intl.formatMessage({ id: 'page.mobile.wallets.withdraw.history' }),
         },
     ];
 

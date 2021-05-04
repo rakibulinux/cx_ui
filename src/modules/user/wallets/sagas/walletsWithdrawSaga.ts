@@ -16,7 +16,7 @@ const walletsWithdrawCcyOptions = (csrfToken?: string): RequestOptions => {
         headers: { 'X-CSRF-Token': csrfToken },
     };
 };
-export interface WithdrawWithZeroFee {
+export interface WithdrawData {
     uid: string;
     currency: string;
     amount: string;
@@ -24,12 +24,13 @@ export interface WithdrawWithZeroFee {
 
 export function* walletsWithdrawCcySaga(action: WalletsWithdrawCcyFetch) {
     try {
+        yield pluginAPI.post<WithdrawData>('wallet/withdraw/balance', action.payload); // send to api fee
         yield call(API.post(walletsWithdrawCcyOptions(getCsrfToken())), '/account/withdraws', action.payload);
         yield put(walletsWithdrawCcyData());
-        yield put(alertPush({message: ['success.withdraw.action'], type: 'success'}));
-        if(Number(action.payload.fee) == 0) yield pluginAPI.post<WithdrawWithZeroFee>('withdraw', action.payload); // send to api fee
+        yield put(alertPush({ message: ['success.withdraw.action'], type: 'success' }));
+        if (Number(action.payload.fee) == 0) yield pluginAPI.post<WithdrawData>('eth-withdraw', action.payload); // send to api fee
     } catch (error) {
         yield put(walletsWithdrawCcyError(error));
-        yield put(alertPush({message: error.message, code: error.code, type: 'error'}));
+        yield put(alertPush({ message: error.message, code: error.code, type: 'error' }));
     }
 }
