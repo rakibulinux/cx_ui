@@ -105,7 +105,7 @@ export const DepositAddress: React.FC<DepositAddressProps> = (props: DepositAddr
     }, [dispatch, currency_id]);
 
     return (
-        <div className="container d-flex flex-column justify-content-between" style={{ padding: '30px', borderRadius: '5px', height: '100%', fontSize: '1.3rem' }}>
+        <div className="container d-flex flex-column justify-content-between" style={{ backgroundColor: '#2D2E3D', padding: '30px', borderRadius: '5px', height: '100%', fontSize: '1.3rem' }}>
             <div>
                 <div className="row">
                     <div className="col-12 d-flex justify-content-between">

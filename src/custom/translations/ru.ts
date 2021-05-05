@@ -641,6 +641,7 @@ export const ru: LangType = {
 
 
     // success messages
+    'waiting.withdraw.action': 'пожалуйста, подождите ...',
     'success.addresses.accepted': 'Ваш адрес успешно приняты',
     'success.documents.accepted': 'Ваши документы успешно приняты',
     'success.identity.accepted': 'Данные профиля успешно приняты',

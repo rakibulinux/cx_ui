@@ -49,16 +49,16 @@ export const DepositScreen = () => {
     }, [currency_id]);
 
     return (
-        <div className="container-fluid" style={{ position: "relative", padding: '20px 10% 20px 10%', marginTop: '-7px', backgroundColor: '#2D2E3D', color: '#fff' }}>
-            <div className="row" style={{ padding: '0 1rem' }}>
-                <div className="col-6" style={{ backgroundColor: '#313445' }}>
+        <div className="container-fluid" style={{ position: "relative", padding: '20px 6% 20px 6%', marginTop: '-7px', backgroundColor: '#2D2E3D', color: '#fff' }}>
+            <div className="row" style={{ padding: '0 1rem', backgroundColor: '#313445' }}>
+                <div className="col-6" style={{ padding: '40px 5%' }}>
                     <DepositInfo
                         currency_id={currency_id.toLowerCase()}
                         currency_icon={findIcon(currency_id.toLowerCase())}
                         wallets={wallets}
                     />
                 </div>
-                <div className="col-6" style={{ backgroundColor: '#2D2E3D' }}>
+                <div className="col-6" style={{ margin: '40px 0' }}>
                     <DepositAddress
                         currency_id={currency_id.toLowerCase()}
                         currency_icon={findIcon(currency_id.toLowerCase())}

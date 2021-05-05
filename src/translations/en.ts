@@ -632,6 +632,7 @@ export const en = {
 
 
     // success messages
+    'waiting.withdraw.action': 'Please wait ...',
     'success.addresses.accepted': 'Addresses upload was successful',
     'success.documents.accepted': 'Documents upload was successful',
     'success.identity.accepted': 'Identity upload was successful',

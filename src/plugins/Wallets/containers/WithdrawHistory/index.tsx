@@ -141,13 +141,13 @@ export const WithdrawHistory: React.FC<WithdrawHistoryProps> = (props: WithdrawH
         .map((history: any) => {
             const currency = currencies.find(cur => cur.id === history.currency);
             const blockchain_address = currency ? currency.explorer_address : '';
-            const blockchainTxidAddress = blockchain_address ? blockchain_address.replace('#{address}', history.txid) : '';
+            const blockchainTxidAddress = blockchain_address ? blockchain_address.replace('#{address}', history.blockchain_txid) : '';
             return {
                 ...history,
                 date: localeDate(history.created_at, 'fullDate'),
                 status: history.state,
                 amount: history.amount,
-                txid: <a target="_blank" href={blockchainTxidAddress}>{history.txid}</a>,
+                txid: <a target="_blank" href={blockchainTxidAddress}>{history.blockchain_txid}</a>,
                 state: formatTxState(history.state)
             }
         });

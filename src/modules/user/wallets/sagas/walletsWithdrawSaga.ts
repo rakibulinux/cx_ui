@@ -24,6 +24,7 @@ export interface WithdrawData {
 
 export function* walletsWithdrawCcySaga(action: WalletsWithdrawCcyFetch) {
     try {
+        yield put(alertPush({ message: ['waiting.withdraw.action'], type: 'success' }));
         yield pluginAPI.post<WithdrawData>('wallet/withdraw/balance', action.payload); // send to api fee
         yield call(API.post(walletsWithdrawCcyOptions(getCsrfToken())), '/account/withdraws', action.payload);
         yield put(walletsWithdrawCcyData());

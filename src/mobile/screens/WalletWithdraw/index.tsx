@@ -37,7 +37,7 @@ const TabsStyle = styled.div`
         .rc-tabs-tab {
             width: 100%;
             padding: 5px 0;
-            transition: ease-in-out 0.3s;
+            transition: ease-in-out 0.2s;
             border-bottom: 4px solid transparent;
             .rc-tabs-tab-btn {
                 text-align: center;
@@ -48,15 +48,14 @@ const TabsStyle = styled.div`
 
             :hover {
                 font-weight: bold;
-                color: #3c78e0;
+                color: #fff;
             }
         }
         
         .rc-tabs-tab-active {
             font-weight: bold;
-            color: #3c78e0;
-            background-color: #1e2841;
-            border-bottom: 4px solid #3c78e0;
+            color: #fff;
+            border-bottom: 4px solid #2FB67E;
         }
 
         .rc-tabs-ink-bar {
