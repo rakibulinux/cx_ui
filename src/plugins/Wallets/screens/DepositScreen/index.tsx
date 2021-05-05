@@ -51,7 +51,7 @@ export const DepositScreen = () => {
     return (
         <div className="container-fluid" style={{ position: "relative", padding: '20px 6% 20px 6%', marginTop: '-7px', backgroundColor: '#2D2E3D', color: '#fff' }}>
             <div className="row" style={{ padding: '0 1rem', backgroundColor: '#313445' }}>
-                <div className="col-6" style={{ padding: '40px 5%' }}>
+                <div className="col-6" style={{ padding: '20px 2%' }}>
                     <DepositInfo
                         currency_id={currency_id.toLowerCase()}
                         currency_icon={findIcon(currency_id.toLowerCase())}
