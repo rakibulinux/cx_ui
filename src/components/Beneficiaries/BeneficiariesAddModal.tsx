@@ -294,13 +294,19 @@ class BeneficiariesAddModalComponent extends React.Component<Props, State> {
         let isValid = true;
 
         switch (blockchainType) {
-            case "ethereum-main":
+            case "et-main":
                 isValid = checkValidErc20Address(value);
                 this.setState({
                     isInvalidAddress: !isValid
                 });
                 break;
-            case "bitcoin":
+            case "bsc-main":
+                isValid = checkValidErc20Address(value);
+                this.setState({
+                    isInvalidAddress: !isValid
+                });
+                break;
+            case "btc-main":
                 isValid = checkValidBitcoinAddress(value);
                 this.setState({
                     isInvalidAddress: !isValid
