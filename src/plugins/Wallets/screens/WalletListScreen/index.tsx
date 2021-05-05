@@ -265,8 +265,8 @@ export const WalletListScreen = () => {
         available: <span>{wallet.balance && Number(wallet.balance) > 0 ? <Decimal key={index} fixed={fixed}>{wallet.balance}</Decimal> : '0.000000'}</span>,
         in_order: <span className="text-secondary">{wallet.locked && Number(wallet.balance) > 0 ? <Decimal key={index} fixed={fixed}>{wallet.locked}</Decimal> : '0.000000'}</span>,
         action: <div className="d-flex justify-content-between">
-          <DepositButton onClick={() => history.push({ pathname: '/new-wallets/deposit/' + String(wallet.currency).toUpperCase() })}>{depositButtonLabel}</DepositButton>
-          <WithdrawButton disabled={!isWithdrawEnabled} onClick={() => history.push({ pathname: '/new-wallets/withdraw/' + String(wallet.currency).toUpperCase() })}>{withdrawButtonLabel}</WithdrawButton>
+          <DepositButton onClick={() => history.push({ pathname: '/wallets/deposit/' + String(wallet.currency).toUpperCase() })}>{depositButtonLabel}</DepositButton>
+          <WithdrawButton disabled={!isWithdrawEnabled} onClick={() => history.push({ pathname: '/wallets/withdraw/' + String(wallet.currency).toUpperCase() })}>{withdrawButtonLabel}</WithdrawButton>
         </div >
       };
     });

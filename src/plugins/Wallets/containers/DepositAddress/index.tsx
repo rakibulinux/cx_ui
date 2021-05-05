@@ -54,7 +54,7 @@ const BlurDisable = styled.div`
     align-items: center;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    background: var(--body-background-color-level-6);
+    background: #4E5463;
     display: flex;
     height: 100%;
     justify-content: center;

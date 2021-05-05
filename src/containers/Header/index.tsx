@@ -97,9 +97,6 @@ class Head extends React.Component<Props, State> {
         <Link className="wallet" to="/wallets">
           Wallet
         </Link>
-        <Link className="wallet" to="/new-wallets">
-          New Wallet
-        </Link>
       </div>
     );
   };

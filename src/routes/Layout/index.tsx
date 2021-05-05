@@ -79,7 +79,6 @@ import {
     RestrictedScreen,
     TradingScreen,
     VerificationScreen,
-    WalletsScreen,
     FeeScreen,
     // SignUpScreen,
     LogInScreen,
@@ -308,7 +307,6 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/history" component={HistoryScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/confirm" component={ConfirmScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/profile" component={ProfileScreen} />
-                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/wallets" component={WalletsScreen} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/security/2fa" component={ProfileTwoFactorAuthScreen} />
                     <Route path="/airdrop" exact component={AirdropList} />
                     <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/airdrop/detail/:airdropID" component={AirdropDetail} />
@@ -316,9 +314,9 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
                     <Route path="/ieo/detail/:ieoID" exact component={SaleDetailScreen} />
                     <Route path="/trading-competition" exact component={TradingCompetionListScreen} />
                     <Route path="/trading-competition/:competition_id" exact component={TradingCompetitionDetailScreen} />
-                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/new-wallets" exact component={WalletListScreen} />
-                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/new-wallets/deposit/:currency_id" exact component={DepositScreen} />
-                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/new-wallets/withdraw/:currency_id" exact component={WithdrawScreen} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/wallets" exact component={WalletListScreen} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/wallets/deposit/:currency_id" exact component={DepositScreen} />
+                    <PrivateRoute loading={userLoading} isLogged={isLoggedIn} path="/wallets/withdraw/:currency_id" exact component={WithdrawScreen} />
                     <Route path="**"><Redirect to="/trading/" /></Route>
                 </Switch>
                 {isLoggedIn && <WalletsFetch />}

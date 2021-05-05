@@ -112,7 +112,7 @@ export const DepositInfo: React.FC<DepositInfoProps> = (props: DepositInfoProps)
     const handleChange = (selectedOption: any) => {
         const currency_id = String(selectedOption.value);
         const location = {
-            pathname: `/new-wallets/deposit/${currency_id.toUpperCase()}`
+            pathname: `/wallets/deposit/${currency_id.toUpperCase()}`
         }
         history.push(location);
     };
@@ -124,7 +124,7 @@ export const DepositInfo: React.FC<DepositInfoProps> = (props: DepositInfoProps)
                 <div className="col-8 d-flex flex-row">
                     <DepositButtonStyles >Deposit</DepositButtonStyles>
                     <WithdrawButtonStyles
-                        onClick={() => history.push({ pathname: `/new-wallets/withdraw/${currency_id.toUpperCase()}` })}>
+                        onClick={() => history.push({ pathname: `/wallets/withdraw/${currency_id.toUpperCase()}` })}>
                         Withdraw
                     </WithdrawButtonStyles>
                 </div>
