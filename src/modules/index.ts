@@ -3,7 +3,7 @@ import { all, call } from 'redux-saga/effects';
 import { AirdropState, rootAirdropSaga } from './airdrops/airdrop';
 import { ClaimState, rootClaimSaga } from './airdrops/claim';
 import { ETHFeeWithdrawState, rootETHFeeWithdrawSaga } from './eth-withdraw/withdraw';
-import { airdropsReducer, ethFeesReducer, infoReducer, publicReducer, saleReducer, tradingCompetitionsReducer, userReducer, eventsReducer } from './app';
+import { airdropsReducer, ethFeesReducer, infoReducer, publicReducer, saleReducer, tradingCompetitionsReducer, userReducer, eventsReducer, pluginsReducer } from './app';
 import { ETHFeeState, rootETHFeeSaga } from './eth-withdraw/fee';
 import { AlertState, rootHandleAlertSaga } from './public/alert';
 import { BlocklistAccessState, rootBlocklistAccessSaga } from './public/blocklistAccess';
@@ -54,7 +54,8 @@ import { TradingRankingsState, rootRankingsSaga } from './trading_competitions/r
 import { CompetionListState, rootCompetionsListSaga } from './trading_competitions/competitions';
 import { CompetitionItemState, rootcompetitionItemSaga } from './trading_competitions/competition_item';
 import { EventsState, rootEventSaga } from './info/events';
-import {LunarsState,rootLunarSaga} from './events/lunar';
+import { LunarsState,rootLunarSaga} from './events/lunar';
+import { rootStakingSaga, StakingListState } from './plugins/staking';
 
 export * from './public/markets';
 export * from './public/orderBook';
@@ -97,6 +98,7 @@ export * from './trading_competitions/competition_item';
 export * from './trading_competitions/rankings';
 export * from './info/events';
 export * from './events/lunar';
+export * from './plugins/staking';
 
 export interface RootState {
     airdrops: {
@@ -169,6 +171,9 @@ export interface RootState {
     events : {
         lunar : LunarsState,
     };
+    plugins: {
+        staking_list: StakingListState
+    }
 }
 
 export const rootReducer = combineReducers({
@@ -180,6 +185,7 @@ export const rootReducer = combineReducers({
     trading_competitions: tradingCompetitionsReducer,
     info: infoReducer,
     events : eventsReducer,
+    plugins: pluginsReducer
 });
 
 export function* rootSaga() {
@@ -228,5 +234,6 @@ export function* rootSaga() {
         call(rootRankingsSaga),
         call(rootEventSaga),
         call(rootLunarSaga),
+        call(rootStakingSaga)
     ]);
 }

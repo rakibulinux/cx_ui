@@ -54,6 +54,7 @@ import { competitionsListReducer } from './trading_competitions/competitions';
 import { competitionItemReducer } from './trading_competitions/competition_item';
 import { eventReducer } from './info/events';
 import { lunarReducer } from './events/lunar';
+import { stakingListReducer } from './plugins/staking';
 
 export const eventsReducer = combineReducers({
     lunar : lunarReducer
@@ -81,9 +82,13 @@ export const tradingCompetitionsReducer = combineReducers({
     competitions: competitionsListReducer,
     competition_item: competitionItemReducer,
     rankings: rankingsReducer
-})
+});
 export const infoReducer = combineReducers({
     events: eventReducer
+});
+
+export const pluginsReducer = combineReducers({
+    staking_list: stakingListReducer
 })
 
 export const publicReducer = combineReducers({
