@@ -12,7 +12,13 @@ const StackingListScreenStyles = styled.div`
         border: none;
     }
     .staking-buttons {
-        z-index: 10;
+        display: flex;
+        flex-direction: row;
+        width: 570px;
+        background: rgba(132, 142, 156, 0.35);
+        border: 1px solid #2FB67E;
+        box-sizing: border-box;
+        border-radius: 5px;
     }
     .stack-tab-btn {
         min-height: 45px;
@@ -33,7 +39,7 @@ const StackingListScreenStyles = styled.div`
     }
     .stack-tab-btn__active {
         color: #fff;
-        border-bottom: 5px solid #30B57E;
+        background: #2FB67E;
         font-weight: 700;
         z-index: 100;
     }
@@ -59,9 +65,9 @@ export const StakingListScreen = () => {
     }, []);
 
     const renderStakingList = () => {
-        return filterStackingState === 'upcoming' ? <StakingList staking_list={staking_list.filter(staking => staking.status === 'upcoming')}/>
-            : filterStackingState === 'running' ? <StakingList staking_list={staking_list.filter(staking => staking.status === 'running')}/>
-            :<StakingList staking_list={staking_list}/>
+        return filterStackingState === 'upcoming' ? <StakingList staking_list={staking_list.filter(staking => staking.status === 'upcoming')} />
+            : filterStackingState === 'running' ? <StakingList staking_list={staking_list.filter(staking => staking.status === 'running')} />
+                : <StakingList staking_list={staking_list} />
     }
 
     return (
@@ -72,7 +78,7 @@ export const StakingListScreen = () => {
                         <h1>Staking</h1>
                     </div>
                 </div>
-                <div className="d-flex flex-row justify-content-start staking-buttons">
+                <div className="staking-buttons">
                     <button
                         onClick={() => setFilterStackingState('upcoming')}
                         className={upcomingButtonClassName}>
@@ -89,15 +95,12 @@ export const StakingListScreen = () => {
                         All
                         </button>
                 </div>
-                {
-                    staking_list.length > 0
-                        ? <div className="row mt-5">
-                            {renderStakingList()}
-                        </div>
-                        : <div>
-                            Staking is unavailabe
-                        </div>
-               }
+
+                <div className="row mt-5">
+                    {renderStakingList()}
+                </div>
+
+
             </div>
         </StackingListScreenStyles>
 

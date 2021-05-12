@@ -15,8 +15,8 @@ export interface StakingReward {
 export interface Staking {
     staking_id: string;
     currency_id: string;
-    event_name: string;
-    prize_string: string;
+    staking_name: string;
+    description: string;
     start_time: string;
     end_time: string;
     active: boolean;

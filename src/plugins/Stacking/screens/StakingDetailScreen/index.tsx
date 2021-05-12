@@ -3,12 +3,14 @@ import { RegisterStake, StakingInfo, UnStake } from '../../containers';
 import Tabs, { TabPane } from 'rc-tabs';
 import styled from 'styled-components';
 import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
-import { selectStakingList, Staking } from '../../../../modules';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectStakingList, Staking, stakingListFetch } from '../../../../modules';
 
 const TabsStyle = styled.div`
+    background: rgba(132, 142, 156, 0.35);
+    box-sizing: border-box;
+    border-radius: 5px;
     .rc-tabs {
-        border: 1px solid hsla(0,0%,85.5%,.5);
         padding: 0 0 10px 0;
     }
     .rc-tabs-nav-list {
@@ -38,7 +40,7 @@ const TabsStyle = styled.div`
         .rc-tabs-tab-active {
             font-weight: bold;
             color: #fff;
-            background-color: #313445;
+            background-color: #2FB67E;
             
         }
         .rc-tabs-ink-bar {
@@ -49,11 +51,12 @@ const TabsStyle = styled.div`
 
 const StakingDetailScreenStyles = styled.div`
     .staking-notes {
+        background: rgba(132, 142, 156, 0.35);
+        border-radius: 5px;
+        padding: 1rem 3rem;
         color: #fff;
         font-size: 1.2rem;
-        margin: 0;
         list-style-type: square;
-        padding-left: 16px;
         li {
             margin-bottom: 0.5em;
         }
@@ -61,30 +64,37 @@ const StakingDetailScreenStyles = styled.div`
 `;
 
 const initialStakingItem = {
-    staking_id: '', 
-    currency_id: '', 
-    event_name: '', 
-    icon_url: '', 
-    prize_string: '', 
-    start_time: '', 
-    end_time: '', 
-    active: false, 
+    staking_id: '',
+    currency_id: '',
+    staking_name: '',
+    icon_url: '',
+    description: '',
+    start_time: '',
+    end_time: '',
+    active: false,
     rewards: [],
 }
 
 export const StakingDetailScreen = () => {
-    
+
     const [stakingItemState, setStakingItemState] = React.useState<Staking>(initialStakingItem);
     const { staking_id } = useParams<{ staking_id: string }>();
     const staking_list = useSelector(selectStakingList);
 
     React.useEffect(() => {
         const staking_item = staking_list.find(staking => staking.staking_id == staking_id)
-        || initialStakingItem;
+            || initialStakingItem;
         setStakingItemState(staking_item);
-    }, [staking_id]);
-    
-    
+    }, [staking_id, staking_list]);
+
+    // dispatch
+    const dispatch = useDispatch();
+    const dispatchFetchStakingList = () => dispatch(stakingListFetch());
+
+    React.useEffect(() => {
+        dispatchFetchStakingList();
+    }, []);
+
     return (
         <StakingDetailScreenStyles>
             <div className="container">
@@ -96,9 +106,10 @@ export const StakingDetailScreen = () => {
                 <div className="row mt-5">
                     <div className="col-12">
                         <StakingInfo
-                            event_name={stakingItemState.event_name}
+                            currency_id={stakingItemState.currency_id}
+                            staking_name={stakingItemState.staking_name}
                             logo_image={stakingItemState.icon_url}
-                            prize_string={stakingItemState.prize_string}
+                            description={stakingItemState.description}
                         />
                     </div>
                 </div>
@@ -112,17 +123,16 @@ export const StakingDetailScreen = () => {
                     </div>
                     <div className="col-6">
                         <TabsStyle>
-                            <Tabs defaultActiveKey="1" >
-                                <TabPane tab="STAKE" key="1">
+                            <Tabs defaultActiveKey="stake" >
+                                <TabPane tab="STAKE" key="stake">
                                     <RegisterStake
                                         currency_id={stakingItemState.currency_id}
                                         start_time={stakingItemState.start_time}
                                         end_time={stakingItemState.end_time}
                                         rewards={stakingItemState.rewards}
-
                                     />
                                 </TabPane>
-                                <TabPane tab="UNSTAKE" key="2">
+                                <TabPane tab="UNSTAKE" key="unstake">
                                     <UnStake />
                                 </TabPane>
 

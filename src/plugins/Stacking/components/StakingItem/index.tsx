@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { StakingReward } from '../../../../modules';
+import { selectCurrencies, StakingReward } from '../../../../modules';
+import { useSelector } from "react-redux";
 
 interface StackingItemProps {
     staking_id: string;
     currency_id: string;
-    event_name: string;
+    staking_name: string;
     rewards: StakingReward[];
     active: boolean
     icon_url: string;
@@ -16,14 +17,14 @@ const StakingItemStyles = styled.div`
     #stacking-item {
         position: relative;
         width: 100%;
-        min-height: 450px;
+        max-height: 450px;
         border-radius: 5px;
-        background-color: #fafafa;
+        background-color: #313445;
         .card-image {
             height: 200px;
             display: flex;
             align-items: center;
-            background-color: #fafafa;
+            background-color: #434A57;
             padding: 40px;
             img {
                 width: 100%;
@@ -32,7 +33,7 @@ const StakingItemStyles = styled.div`
         }
     
         .image {
-            background-color: #fafafa;
+            background-color: #434A57;
             background-position: 50% 50%;
             background-size: cover;
             display: flex;
@@ -56,14 +57,14 @@ const StakingItemStyles = styled.div`
         }
         .text {
             height: 100%;
-            background-color: #fff;
-            padding: 1rem 3rem;
+            background-color: #313445;
+            padding: 1rem 2rem;
             .title, .reward-container {
                 padding: 0.5rem 0;
             }
             .title {
                 margin: 10px 0;
-                color: black;
+                color: #fff;
                 font-size: 20px;
                 font-weight: 700;
                 width: 100%;  
@@ -80,19 +81,17 @@ const StakingItemStyles = styled.div`
                     flex: 0 0 80px;
                     padding: 10px;
                     margin-right: 5px;
-                    background-color: #fafafa;
+                    background-color: #434A57;
                     border-radius: 5px;
-                    border: 2px solid #30B57E;
                     margin-bottom: 1rem;
                     &__rate {
                         font-weight: bold;
-                        color: #000000;
+                        font-size: 1.2rem;
+                        color: #fff;
                     }
                 }
             }
-            .flex-spacer {
-                flex: 1 1 auto;
-            }
+          
             .buttons {
                 padding-top: 17px;
                 margin: auto -3px -3px;
@@ -103,6 +102,7 @@ const StakingItemStyles = styled.div`
                     margin-bottom: 0;
                     background-color: #30B57E;
                     color: #fff;
+                    
                     flex: 1 1 0%;
                     padding: 0 5px;
                     border-radius: 5px;
@@ -111,13 +111,28 @@ const StakingItemStyles = styled.div`
                     line-height: 36px;
                     margin: 3px;
                     text-align: center;
-                    text-transform: uppercase;
                     will-change: background-color;
                     transition: background-color .2s;
 
                     :hover {
                         background-color: #35cf8f;
                     }
+                }
+
+                .learn-more-btn {
+                    margin-bottom: 0;
+                    background-color: #434A57;
+                    color: #fff;
+                    flex: 1 1 0%;
+                    padding: 0 5px;
+                    border-radius: 5px;
+                    white-space: nowrap;
+                    font-size: 13px;
+                    line-height: 36px;
+                    margin: 3px;
+                    text-align: center;
+                    will-change: background-color;
+                    transition: background-color .2s;
                 }
             }
             
@@ -142,40 +157,53 @@ const StakingItemStyles = styled.div`
 `;
 
 export const StakingItem: React.FC<StackingItemProps> = (props: StackingItemProps) => {
-    const { staking_id, icon_url, event_name, rewards, active } = props;
+    const { staking_id, currency_id, staking_name, rewards, active } = props;
     const history = useHistory();
+    const currencies = useSelector(selectCurrencies);
     const handleGoStacking = () => {
         const location = {
             pathname: '/staking/detail/' + staking_id
         }
         history.push(location);
     }
+
+    const getCryptoIcon = (currency_id: string): string => {
+        
+        const currency = currencies.find((currency: any) => currency.id === currency_id);
+        try {
+            return require(`../../../../../node_modules/cryptocurrency-icons/128/color/${currency_id.toLowerCase()}.png`);
+        } catch (err) {
+            if (currency) return currency.icon_url;
+            return require('../../../../../node_modules/cryptocurrency-icons/svg/color/generic.svg');
+        }
+    };
+    
     return (
         <StakingItemStyles>
             <div id="stacking-item">
                 <section className="image">
                     <div className="logo-image">
-                        <img src={icon_url} alt="" />
+                        <img src={getCryptoIcon(currency_id)} alt="" />
                     </div>
                 </section>
                 <section className="text">
                     <h3 className="title">
-                        {event_name}
-                        {/* <a style={{ color: 'black', fontSize: '20px', fontWeight: 'bold' }} href=""></a> */}
+                        {staking_name}
                     </h3>
                     <div className="reward-container flex-spacer">
                         {
                             rewards.map(reward => (
                                 <div className="reward-box">
                                     <div className="reward-box__rate">{Number(reward.annual_rate) * 100}%</div>
-                                    <div className="reward-box__period">{Number(reward.period) / 24} days</div>
+                                    <div className="reward-box__period text-white">{Number(reward.period)} days</div>
                                 </div>
                             ))
                         }
                     </div>
                     <div className="flex-spacer"></div>
-                    <div className="mt-3 buttons">
-                        <button onClick={handleGoStacking} className="go-stack-btn w-100">Go Stack</button>
+                    <div className="mt-3 buttons d-flex flex-row justify-content-between">
+                        <button onClick={handleGoStacking} className="go-stack-btn">Go Stack</button>
+                        <button className="learn-more-btn">Learn More</button>
                     </div>
                 </section>
 
