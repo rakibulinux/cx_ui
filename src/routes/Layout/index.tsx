@@ -92,7 +92,7 @@ import { SaleListScreen } from '../../plugins/Sale';
 import { SaleDetailScreen } from '../../plugins/Sale/screens/SaleDetailScreen';
 import { IEODetailMobileScreen, IEOListMobileScreen } from '../../mobile/plugins/IEO';
 import { TradingCompetionListScreen, TradingCompetitionDetailScreen } from '../../plugins/TradingCompetion';
-import { StakingDetailScreen, StakingListScreen } from '../../plugins/Stacking';
+import { StakingDetailScreen, StakingListScreen } from '../../plugins/Stake';
 
 interface ReduxProps {
     colorTheme: string;
@@ -315,8 +315,8 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
                     <Route path="/ieo/detail/:ieoID" exact component={SaleDetailScreen} />
                     <Route path="/trading-competition" exact component={TradingCompetionListScreen} />
                     <Route path="/trading-competition/:competition_id" exact component={TradingCompetitionDetailScreen} />
-                    <Route path="/staking" exact component={StakingListScreen} />
-                    <Route path="/staking/detail/:staking_id" exact component={StakingDetailScreen} />
+                    <Route path="/stake" exact component={StakingListScreen} />
+                    <Route path="/stake/detail/:staking_id" exact component={StakingDetailScreen} />
                     <Route path="**"><Redirect to="/trading/" /></Route>
                 </Switch>
                 {isLoggedIn && <WalletsFetch />}

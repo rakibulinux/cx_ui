@@ -192,7 +192,7 @@ export const StakingItem: React.FC<Props> = (props: Props) => {
     const currencies = useSelector(selectCurrencies);
     const handleGoStacking = () => {
         const location = {
-            pathname: '/staking/detail/' + staking_id
+            pathname: '/stake/detail/' + staking_id
         }
         history.push(location);
     }
