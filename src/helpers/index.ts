@@ -41,3 +41,4 @@ export * from './toggleColorTheme';
 export * from './checkConsistency';
 export * from './checkBlockchainAddress';
 export * from './getWalletTabName';
+export * from './getTimeZone'

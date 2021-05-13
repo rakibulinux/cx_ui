@@ -7,11 +7,11 @@ import {
     stakingListError,
     StakingListFetch
 } from '../actions';
-import { Staking } from '../types';
+import { Stake } from '../types';
 
 export function* fetchStakingListSaga(action: StakingListFetch) {
     try {
-        const stakingList = yield axios.get<Staking[]>('staking/list/fetch/all');
+        const stakingList = yield axios.get<Stake[]>('staking/list/fetch/all');
         yield put(stakingListData(stakingList.data));
     } catch (error) {
         yield put(stakingListError(error));

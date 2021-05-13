@@ -1,13 +1,16 @@
 import * as React from 'react'
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { selectWallets } from '../../../../modules';
 
 const UnStakeStyles = styled.div`
+    padding: 20px 0;
     .amount-box {
         flex: 1 1 auto;
         height: 100%;
         border: 1px solid hsla(0,0%,85.5%,.5);
         box-sizing: border-box;
-        padding: 10px 20px;
+        padding: 0 20px;
         display: flex;
         align-items: center;
         span {
@@ -23,7 +26,7 @@ const UnStakeStyles = styled.div`
             width: 0;
             letter-spacing: .7px;
             font-weight: 700;
-            padding: 10px;
+            padding: 0 10px;
             text-align: right;
             border: 0;
             outline: 0;
@@ -78,7 +81,7 @@ const UnStakeStyles = styled.div`
         
     }
 
-    .stake-btn {
+    .unstake-btn {
         outline: 0;
         -webkit-appearance: none;
         -webkit-tap-highlight-color: transparent;
@@ -97,36 +100,60 @@ const UnStakeStyles = styled.div`
         height: 50px;
         font-size: 20px;
         font-weight: 800;
+
+        :disabled {
+            background: rgba(132, 142, 156, 0.35);
+            color: #fff;
+            cursor: not-allowed;
+        }
+    }
+
+    .amount-number {
+        color: #30B57E;
+        font-weight: bold;
     }
 `;
 
-export const UnStake = () => {
+interface UnStakeProps {
+    currency_id: string;
+}
+
+export const UnStake: React.FC<UnStakeProps> = (props: UnStakeProps) => {
+    const { currency_id } = props;
+    const [amountState, setAmountState] = React.useState("");
+    const [agreeState, setAgreeState] = React.useState(false);
+    const wallets = useSelector(selectWallets);
+    const wallet = wallets.find(wallet => wallet.currency.toLowerCase() === currency_id.toLowerCase()) || { balance: 0.00000000 }
     return (
         <UnStakeStyles>
             <div className="container">
                 <div className="row">
                     <div className="col-12 text-right">
-                        <span style={{color: '#fff'}}>
-                            Available Amount: 0.00000000 VLX
+                        <span className="amount-number">
+                            Available Amount: {wallet.balance}  {currency_id.toUpperCase()}
                         </span>
                         <div className="amount-box">
                             <span>AMOUNT</span>
-                            <input type="number" placeholder="0" />
-                            <span>VLX</span>
+                            <input value={amountState} type="number" placeholder="0" onChange={e => {
+                                const amount = e.target.value;
+                                if (Number(amount) >= 0) setAmountState(amount)
+
+                            }} />
+                            <span>{currency_id.toUpperCase()}</span>
                         </div>
                     </div>
                 </div>
                 <div className="row mt-5">
                     <div className="col-12">
                         <label className="agree">
-                            <input type="checkbox" />
+                            <input type="checkbox" onChange={e => setAgreeState(e.target.checked)} />
                             I have read and agree with the cautions.
                         </label>
                     </div>
                 </div>
                 <div className="row mt-2">
                     <div className="col-12">
-                        <button className="stake-btn">STAKE</button>
+                        <button disabled={!agreeState || Number(amountState) > Number(wallet.balance) || Number(amountState) <= 0} className="unstake-btn">UNSTAKE</button>
                     </div>
                 </div>
             </div>

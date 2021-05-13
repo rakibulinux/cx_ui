@@ -12,7 +12,7 @@ export interface StakingReward {
     payment_time: string;
 }
 
-export interface Staking {
+export interface Stake {
     staking_id: string;
     currency_id: string;
     staking_name: string;
@@ -22,10 +22,10 @@ export interface Staking {
     active: boolean;
     rewards: StakingReward[];
     icon_url: string;
-    status?: 'upcoming' | 'running';
+    status: 'upcoming' | 'running' | 'ended' | '';
 }
 
 export interface StakingListState extends CommonState {
-    payload: Staking[];
+    payload: Stake[];
     loading: boolean;
 }

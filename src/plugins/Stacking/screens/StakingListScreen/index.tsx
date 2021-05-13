@@ -75,7 +75,7 @@ export const StakingListScreen = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <h1>Staking</h1>
+                        <h1>Stake</h1>
                     </div>
                 </div>
                 <div className="staking-buttons">

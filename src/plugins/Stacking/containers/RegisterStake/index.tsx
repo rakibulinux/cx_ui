@@ -1,11 +1,15 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 import styled from 'styled-components';
-import { StakingReward } from '../../../../modules';
+import { selectWallets, StakingReward } from '../../../../modules';
 import { format, addDays } from 'date-fns';
+import { useSelector } from 'react-redux';
+import { getTimeZone } from '../../../../helpers';
+import Countdown from 'react-countdown';
 
 const RegisterStakeStyles = styled.div`
-
+    position: relative;
+    padding: 20px 0;
     .amount-box {
         flex: 1 1 auto;
         height: 100%;
@@ -27,7 +31,7 @@ const RegisterStakeStyles = styled.div`
             width: 0;
             letter-spacing: .7px;
             font-weight: 700;
-            padding: 10px;
+            padding: 0 10px;
             text-align: right;
             border: 0;
             outline: 0;
@@ -51,13 +55,13 @@ const RegisterStakeStyles = styled.div`
         }
         input {
             flex: 1 1 auto;
-            font-size: 16px;
+            font-size: 19px;
             border-radius: 0;
             margin: 0;
             width: 0;
             letter-spacing: .7px;
             font-weight: 700;
-            padding: 10px;
+            padding: 0 10px;
             text-align: right;
             border: 0;
             outline: 0;
@@ -95,19 +99,16 @@ const RegisterStakeStyles = styled.div`
         margin-bottom: 20px;
         font-size: 14px;
         background-color:rgba(132, 142, 156, 0.35);
-        padding: 20px;
+        padding: 10px 20px;
         .detail-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            margin-bottom: 8px;
-
             .key {
                 color: #fff;
                 padding-right: 8px;
             }
             .value {
-                font-weight: 700;
                 text-align: right;
                 color: #fff;
                 flex: 1 0 auto;
@@ -156,9 +157,53 @@ const RegisterStakeStyles = styled.div`
         height: 50px;
         font-size: 20px;
         font-weight: 800;
+
+        :disabled {
+            background: rgba(132, 142, 156, 0.35);
+            color: #fff;
+            cursor: not-allowed;
+        }
     }
 
-    
+
+    .annual-reward-number {
+        color: #30B57E;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .amount-number {
+        color: #30B57E;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .loading-spin {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: #313445c9;
+    }
+
+    .stacking-register__disabled {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        content: '';
+        top: 0;
+        left: 0;
+        font-size: 30px;
+        background-color: #313445c9;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 997;
+        color: rgb(255, 255, 255);
+    }
 `;
 
 interface RegisterStakeProps {
@@ -166,17 +211,19 @@ interface RegisterStakeProps {
     start_time: string;
     end_time: string;
     rewards: StakingReward[];
+    status: "upcoming" | "running" | "ended" | "";
 }
 
 const DEFAULT_PERIOD_INDEX = 0;
 
 export const RegisterStake: React.FC<RegisterStakeProps> = (props: RegisterStakeProps) => {
-    const { currency_id, rewards } = props;
+    const { currency_id, rewards, start_time, status } = props;
     const [selectedPeriodIndexState, setSelectedPeriodIndexState] = React.useState<number>(DEFAULT_PERIOD_INDEX);
     const [stakingDateState, setStakingDateState] = React.useState("");
     const [releaseDateState, setReleaseDateState] = React.useState("");
     const [expectedRewardState, setExpectedRewardState] = React.useState("");
     const [amountState, setAmountState] = React.useState("");
+    const [agreeState, setAgreeState] = React.useState(false);
     const [rewardState, setRewardState] = React.useState({
         "period": 0,
         "total_amount": "0",
@@ -185,12 +232,15 @@ export const RegisterStake: React.FC<RegisterStakeProps> = (props: RegisterStake
         "cap_amount_per_user": "0",
         "annual_rate": 0,
         "payment_time": ""
-    })
+    });
+    const wallets = useSelector(selectWallets);
+    const wallet = wallets.find(wallet => wallet.currency.toLowerCase() === currency_id.toLowerCase()) || { balance: 0.00000000 }
+
     const selecterdPeriodButtonClass = classNames('period-btn', 'period-btn__active');
 
     React.useEffect(() => {
         setExpectedRewardState((rewardState.annual_rate / 365 * rewardState.period * Number(amountState)).toString())
-    }, [amountState])
+    }, [amountState]);
 
     const handleSelectLockupPeriod = (period_index: number) => {
         const reward = rewards[period_index];
@@ -217,26 +267,68 @@ export const RegisterStake: React.FC<RegisterStakeProps> = (props: RegisterStake
         }
     }, [rewards.length]);
 
+    const isDisableStakeButton = Number(amountState) < Number(rewardState.min_amount) || !agreeState || Number(amountState) > Number(wallet.balance);
+
+    const renderer = ({ days, hours, minutes, seconds, completed }) => {
+        if (completed) {
+            // Render a completed state
+            // window.location.reload(false);
+            return <div>
+                <div>00 <span>Days</span></div>
+                <div>00 <span>Hours</span></div>
+                <div>00 <span>Mininutes</span></div>
+                <div>00 <span>Seconds</span></div>
+            </div>;
+        } else {
+            // Render a countdown
+            return <span>{days}:{hours}:{minutes}:{seconds}</span>
+        }
+    };
+
+
+    const renderProgress = () => {
+        return (
+            <span className="text-warning" hidden={status !== "upcoming"}>Start in:  <Countdown date={new Date(start_time)} renderer={renderer} /></span>
+        );
+    }
 
     return (
         <RegisterStakeStyles>
             <div className="container">
                 <div className="row">
                     <div className="col-12 text-right">
+                        <span className="amount-number">
+                            Available Amount: {wallet.balance}  {currency_id.toUpperCase()}
+                        </span>
+                    </div>
+                    <div className="col-12 text-right">
+
                         <div className="amount-box">
                             <span>AMOUNT</span>
-                            <input onChange={e => setAmountState(e.target.value)} value={amountState} type="number" placeholder="0" />
+                            <input value={amountState} type="number" placeholder="0" onChange={e => {
+                                const amount = e.target.value;
+                                if (Number(amount) >= 0) setAmountState(amount)
+
+                            }} />
                             <span>{currency_id.toUpperCase()}</span>
                         </div>
                     </div>
+                    <div className="col-12">
+                        <span
+                            hidden={Number(amountState) >= Number(rewardState.min_amount) || amountState === ""}
+                            className="text-danger float-right">
+                            No less than <strong>{Number(rewardState.min_amount)} {currency_id.toUpperCase()}</strong> can be staked at a time.
+                        </span>
+                    </div>
                 </div>
-                <div className="row mt-5">
+                <div className="row mt-3">
                     <div className="col-12">
                         <h5>Lock-up Period</h5>
                         <div className="d-flex flex-row justify-content-between">
                             {
                                 rewards.map((reward: StakingReward, index: number) => (
                                     <button
+                                        key={index}
                                         className={selectedPeriodIndexState === index ? selecterdPeriodButtonClass : 'period-btn'}
                                         onClick={() => handleSelectLockupPeriod(index)}>
                                         {Number(reward.period)} days
@@ -247,12 +339,12 @@ export const RegisterStake: React.FC<RegisterStakeProps> = (props: RegisterStake
 
                     </div>
                     <div className="col-12">
-                        <span className="text-white float-right">Annualized Rewards <strong>{Number(rewardState.annual_rate) * 100}</strong>%</span>
+                        <span className="float-right annual-reward-number">Annualized Rewards <strong>{Number(rewardState.annual_rate) * 100}%</strong></span>
                     </div>
                 </div>
-                <div className="row mt-5">
+                <div className="row mt-3">
                     <div className="col-12">
-                        <h5>Lock-up dates (GMT+7)</h5>
+                        <h5>Lock-up dates (GMT{getTimeZone()})</h5>
                     </div>
                     <div className="col-12">
                         <div className="staking-details">
@@ -267,7 +359,7 @@ export const RegisterStake: React.FC<RegisterStakeProps> = (props: RegisterStake
                         </div>
                     </div>
                 </div>
-                <div className="row mt-5">
+                <div className="row mt-3">
                     <div className="col-12">
                         <h5>Expected Rewards (Distributed at end)</h5>
                     </div>
@@ -279,20 +371,31 @@ export const RegisterStake: React.FC<RegisterStakeProps> = (props: RegisterStake
                         </div>
                     </div>
                 </div>
-                <div className="row mt-5">
+                <div className="row mt-3">
                     <div className="col-12">
                         <label className="agree">
-                            <input type="checkbox" />
+                            <input type="checkbox" onChange={e => setAgreeState(e.target.checked)} />
                             I have read and agree with the cautions.
                         </label>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <button className="stake-btn">STAKE</button>
+                        <button className="stake-btn" disabled={isDisableStakeButton}>STAKE</button>
                     </div>
                 </div>
+                <div hidden={currency_id !== ""} className="loading-spin d-flex justify-content-center align-items-center">
+                    <div className="text-center">
+                        <div className="spinner-border" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="stacking-register__disabled text-info" hidden={status === 'running'}>
+                    <span>{renderProgress()}</span>
+                </div>
             </div>
+
         </RegisterStakeStyles>
 
     )

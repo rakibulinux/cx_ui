@@ -11,6 +11,7 @@ interface StakingInfoProps {
 }
 
 const StakingInfoStyles = styled.div`
+    position: relative;
     background-color: #313445;
     box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
@@ -60,6 +61,17 @@ const StakingInfoStyles = styled.div`
             color: #000;
         }
     }
+
+    
+    .loading-spin {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: #313445c9;
+    }
    
 `;
 
@@ -67,7 +79,7 @@ export const StakingInfo: React.FC<StakingInfoProps> = (props: StakingInfoProps)
     const { staking_name, description, currency_id } = props;
     const currencies = useSelector(selectCurrencies);
     const getCryptoIcon = (currency_id: string): string => {
-        
+
         const currency = currencies.find((currency: any) => currency.id === currency_id);
         try {
             return require(`../../../../../node_modules/cryptocurrency-icons/128/color/${currency_id.toLowerCase()}.png`);
@@ -94,6 +106,13 @@ export const StakingInfo: React.FC<StakingInfoProps> = (props: StakingInfoProps)
                 <div className="col-2 buttons">
                     <button className="trade-btn">Trade {currency_id.toUpperCase()}</button>
                     <button className="view-detail-btn">View Details</button>
+                </div>
+            </div>
+            <div hidden={currency_id !== ""} className="loading-spin d-flex justify-content-center align-items-center">
+                <div className="text-center">
+                    <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
                 </div>
             </div>
         </StakingInfoStyles>
